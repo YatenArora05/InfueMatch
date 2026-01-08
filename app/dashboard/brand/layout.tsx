@@ -1,0 +1,34 @@
+"use client";
+
+import React, { useState } from 'react';
+import { Menu } from 'lucide-react';
+import BrandSidebar from '@/components/brand/BrandSidebar';
+
+export default function BrandLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="flex min-h-screen bg-[#F8F9FD]">
+      {/* Sidebar - Fixed width on desktop, mobile menu on mobile */}
+      <BrandSidebar isMobileOpen={isMobileMenuOpen} onMobileClose={() => setIsMobileMenuOpen(false)} />
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col md:ml-64">
+        {/* Mobile Menu Button */}
+        <div className="md:hidden fixed top-4 right-4 z-40">
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="p-3 bg-white rounded-xl shadow-lg border border-gray-100 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+
+        {/* Scrollable Dashboard View */}
+        <main className="p-4 md:p-8 overflow-y-auto w-full">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}

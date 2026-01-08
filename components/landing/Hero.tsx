@@ -1,0 +1,86 @@
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { ChevronDown } from 'lucide-react';
+
+export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-20">
+      {/* Background Gradient Blobs - Interactive */}
+      <div 
+        className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-purple-100 rounded-full blur-[120px] opacity-60 transition-transform duration-300"
+        style={{
+          transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px) translate(-12px, 48px)`
+        }}
+      />
+      <div 
+        className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[400px] h-[400px] bg-indigo-50 rounded-full blur-[100px] opacity-50 transition-transform duration-300"
+        style={{
+          transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * -0.02}px) translate(-96px, 96px)`
+        }}
+      />
+      
+      <div className="container mx-auto px-6 relative z-10 text-center">
+        {/* Modern Badge */}
+        <div className="inline-block px-4 py-1.5 mb-3 -mt-4 text-sm font-medium tracking-wide text-purple-700 bg-purple-50 rounded-full border border-purple-100 animate-fade-in">
+          ✨ The #1 Platform for Creator Partnerships
+        </div>
+         {/* Middle Section */}
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tighter leading-[1.1] transition-transform duration-300 hover:scale-105">
+          Match. Collaborate. <br />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-500">
+            Scale Your Influence.
+          </span>
+        </h1>
+        
+        {/* <p className="text-lg md:text-2xl text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed">
+          The bridge between world-class brands and the creators who define culture. 
+          Join the elite network designed for high-impact growth.
+        </p> */}
+        {/* Main Section */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <Link href="/signup?role=brand" className="group relative px-7 py-3.5 bg-purple-600 text-white rounded-xl font-bold text-base hover:bg-purple-700 transition-all shadow-xl shadow-purple-200 active:scale-95 overflow-hidden inline-block">
+            <span className="relative z-10">I am a Brand</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+          </Link>
+          
+          <Link href="/signup?role=influencer" className="px-7 py-3.5 bg-white text-gray-900 border-2 border-gray-100 rounded-xl font-bold text-base hover:border-purple-600 hover:text-purple-600 transition-all active:scale-95 shadow-sm inline-block">
+            I am an Influencer
+          </Link>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block animate-bounce">
+          <button
+            onClick={handleScrollDown}
+            className="flex flex-col items-center gap-2 text-gray-400 hover:text-purple-600 transition-colors group"
+            aria-label="Scroll down"
+          >
+            <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
+            <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1 group-hover:border-purple-600 transition-colors">
+              <ChevronDown size={16} className="animate-pulse" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
