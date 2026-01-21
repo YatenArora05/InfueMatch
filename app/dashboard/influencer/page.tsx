@@ -270,7 +270,7 @@ export default function InfluencerDashboard() {
               <input type="text" name="firstName" placeholder="First Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
               <input type="text" name="lastName" placeholder="Last Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
               
-              <select name="gender" className="text-gray-900" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base">
+              <select name="gender" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900">
                 <option value="">Choose Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
