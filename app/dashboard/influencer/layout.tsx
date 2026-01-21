@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Sidebar from "@/components/dashboard/Sidebar";
+import ChatBot from "@/components/dashboard/ChatBot";
 import { Menu } from "lucide-react";
 
 export default function InfluencerLayout({ children }: { children: React.ReactNode }) {
@@ -29,6 +30,9 @@ export default function InfluencerLayout({ children }: { children: React.ReactNo
           {children}
         </main>
       </div>
+
+      {/* ChatBot - Appears on all influencer dashboard pages */}
+      <ChatBot userType="influencer" />
     </div>
   );
 }

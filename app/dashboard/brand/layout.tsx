@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
 import BrandSidebar from '@/components/brand/BrandSidebar';
+import ChatBot from '@/components/dashboard/ChatBot';
 
 export default function BrandLayout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,6 +30,9 @@ export default function BrandLayout({ children }: { children: React.ReactNode })
           {children}
         </main>
       </div>
+
+      {/* ChatBot - Appears on all brand dashboard pages */}
+      <ChatBot userType="brand" />
     </div>
   );
 }

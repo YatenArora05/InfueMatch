@@ -29,6 +29,56 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Make all input fields have black text */
+input,
+textarea,
+select {
+  color: #000000 !important;
+}
+
+/* Handle autofill and all input states */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+  color: #000000 !important;
+}
+
+input[type="text"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill,
+input[type="tel"]:-webkit-autofill,
+input[type="number"]:-webkit-autofill,
+input[type="date"]:-webkit-autofill,
+input[type="url"]:-webkit-autofill,
+input[type="search"]:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;

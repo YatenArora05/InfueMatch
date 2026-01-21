@@ -109,7 +109,7 @@ export default function LoginForm() {
         <div className="relative group">
           <input
             type="email"
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
               errors.email
                 ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
                 : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
@@ -129,7 +129,7 @@ export default function LoginForm() {
         <div className="relative group">
           <input
             type="password"
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
               errors.password
                 ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
                 : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'

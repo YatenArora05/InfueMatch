@@ -257,7 +257,7 @@ export default function InfluencerDashboard() {
               <div className="lg:col-span-2">
                 <label className="block text-[10px] md:text-xs font-black text-gray-400 uppercase mb-1 md:mb-2 ml-1">Email Address</label>
                 <div className="relative group">
-                   <input type="email" name="email"  className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
+                   <input type="email" name="email"  className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
                    <Mail className="absolute left-3 md:left-4 top-3 md:top-4 text-gray-300 group-focus-within:text-purple-500 w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </div>
               </div>
@@ -267,28 +267,28 @@ export default function InfluencerDashboard() {
                 <input type="file" name="profilePic" className="w-full text-xs md:text-sm text-gray-500 file:mr-2 md:file:mr-4 file:py-1.5 md:file:py-2 file:px-2 md:file:px-4 file:rounded-full file:border-0 file:text-[10px] md:file:text-xs file:font-black file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200" />
               </div>
 
-              <input type="text" name="firstName" placeholder="First Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
-              <input type="text" name="lastName" placeholder="Last Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
+              <input type="text" name="firstName" placeholder="First Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
+              <input type="text" name="lastName" placeholder="Last Name" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
               
-              <select name="gender" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base">
+              <select name="gender" className="text-gray-900" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base">
                 <option value="">Choose Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
 
-              <input type="date" name="dob" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
+              <input type="date" name="dob" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
               <div className="relative group lg:col-span-2">
-                <input type="tel" name="phone" placeholder="Phone Number" className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
+                <input type="tel" name="phone" placeholder="Phone Number" className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
                 <Phone className="absolute left-3 md:left-4 top-3 md:top-4 text-gray-300 group-focus-within:text-purple-500 w-4 h-4 md:w-[18px] md:h-[18px]" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              <input type="text" name="address" placeholder="Address (Optional)" className="md:col-span-3 w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
-              <input type="text" name="city" placeholder="City" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
-              <input type="text" name="state" placeholder="State" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
-              <input type="text" name="zip" placeholder="Zip" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base" />
+              <input type="text" name="address" placeholder="Address (Optional)" className="md:col-span-3 w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
+              <input type="text" name="city" placeholder="City" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
+              <input type="text" name="state" placeholder="State" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
+              <input type="text" name="zip" placeholder="Zip" className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-600 outline-none text-sm md:text-base text-gray-900" />
             </div>
           </div>
 
@@ -301,44 +301,44 @@ export default function InfluencerDashboard() {
               {/* Instagram */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div className="relative">
-                  <input type="text" name="instagramUsername" placeholder="Instagram Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="instagramUsername" placeholder="Instagram Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                   <Instagram className="absolute left-2.5 md:left-3 top-3 md:top-4 text-pink-500 w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </div>
                 <div className="relative">
-                  <input type="text" name="instagramFollowers" placeholder="Followers (e.g., 50K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="instagramFollowers" placeholder="Followers (e.g., 50K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                 </div>
               </div>
               
               {/* YouTube */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div className="relative">
-                  <input type="text" name="youtubeChannel" placeholder="YouTube Channel" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="youtubeChannel" placeholder="YouTube Channel" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                   <Youtube className="absolute left-2.5 md:left-3 top-3 md:top-4 text-red-500 w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </div>
                 <div className="relative">
-                  <input type="text" name="youtubeSubscribers" placeholder="Subscribers (e.g., 100K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="youtubeSubscribers" placeholder="Subscribers (e.g., 100K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                 </div>
               </div>
               
               {/* Facebook */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div className="relative">
-                  <input type="text" name="facebookUsername" placeholder="Facebook Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="facebookUsername" placeholder="Facebook Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                   <Facebook className="absolute left-2.5 md:left-3 top-3 md:top-4 text-blue-600 w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </div>
                 <div className="relative">
-                  <input type="text" name="facebookFollowers" placeholder="Followers (e.g., 25K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="facebookFollowers" placeholder="Followers (e.g., 25K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                 </div>
               </div>
               
               {/* Twitter */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div className="relative">
-                  <input type="text" name="twitterUsername" placeholder="Twitter Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="twitterUsername" placeholder="Twitter Username" className="w-full pl-9 md:pl-10 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                   <Twitter className="absolute left-2.5 md:left-3 top-3 md:top-4 text-sky-400 w-4 h-4 md:w-[18px] md:h-[18px]" />
                 </div>
                 <div className="relative">
-                  <input type="text" name="twitterFollowers" placeholder="Followers (e.g., 30K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm" />
+                  <input type="text" name="twitterFollowers" placeholder="Followers (e.g., 30K)" className="w-full pl-4 pr-4 py-3 md:py-4 bg-gray-50 border-none rounded-xl md:rounded-2xl focus:ring-2 focus:ring-purple-500 outline-none text-sm text-gray-900" />
                 </div>
               </div>
             </div>
