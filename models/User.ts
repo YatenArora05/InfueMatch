@@ -5,10 +5,10 @@ const UserSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { 
-      type: String, 
-      required: true, 
-      enum: ["brand", "influencer"] 
+    role: {
+      type: String,
+      required: true,
+      enum: ["brand", "influencer"],
     },
     // Placeholders for future profile data from your onboarding forms
     profileComplete: { type: Boolean, default: false },
@@ -44,7 +44,10 @@ const UserSchema = new Schema(
         },
       },
       niche: [String],
-    }
+    },
+    // Fields used for password reset flow
+    resetOtp: { type: String },
+    resetOtpExpires: { type: Date },
   },
   { timestamps: true }
 );
