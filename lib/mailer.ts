@@ -21,6 +21,23 @@ export async function sendResetOtpEmail(to: string, otp: string) {
   });
 }
 
+export async function sendCollaborationEmail(
+  to: string,
+  influencerName: string,
+  brandName: string,
+  brandEmail: string
+) {
+  const html = getCollaborationEmailHtml(influencerName, brandName, brandEmail);
+
+  await transporter.sendMail({
+    from: process.env.SMTP_FROM || '"InflueMatch" <no-reply@influematch.com>',
+    to,
+    replyTo: brandEmail,
+    subject: `${brandName} wants to collaborate with you on InflueMatch`,
+    html,
+  });
+}
+
 function getResetOtpEmailHtml(otp: string) {
   return `
   <html>
@@ -68,7 +85,73 @@ function getResetOtpEmailHtml(otp: string) {
               </tr>
               <tr>
                 <td style="font-size:12px;color:#6b7280;padding-bottom:16px;">
-                  If you didn’t request this, you can safely ignore this email — your password will not change.
+                  If you didn't request this, you can safely ignore this email — your password will not change.
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:11px;color:#9ca3af;border-top:1px solid #f3f4f6;padding-top:16px;">
+                  © ${new Date().getFullYear()} InflueMatch. All rights reserved.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>`;
+}
+
+function getCollaborationEmailHtml(
+  influencerName: string,
+  brandName: string,
+  brandEmail: string
+) {
+  return `
+  <html>
+    <body style="margin:0;padding:0;background:#f8f9fd;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 0;">
+        <tr>
+          <td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:24px;padding:32px;box-shadow:0 18px 45px rgba(88,28,135,0.12);border:1px solid #f3e8ff;">
+              <tr>
+                <td align="left" style="padding-bottom:24px;">
+                  <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:8px;">
+                    <div style="width:32px;height:32px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;">IM</div>
+                    <span style="font-size:20px;font-weight:800;color:#111827;">InflueMatch</span>
+                  </div>
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.16em;color:#a855f7;text-transform:uppercase;">
+                    Collaboration Opportunity
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:18px;color:#111827;font-weight:700;padding-bottom:8px;">
+                  Hello ${influencerName || "there"}! 👋
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:14px;color:#4b5563;line-height:1.6;padding-bottom:16px;">
+                  Great news! <strong style="color:#7c3aed;">${brandName}</strong> has viewed your profile on InflueMatch and is interested in collaborating with you.
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:14px;color:#4b5563;line-height:1.6;padding-bottom:24px;">
+                  They loved what they saw and would like to explore a potential partnership. This could be an exciting opportunity to work together!
+                </td>
+              </tr>
+              <tr>
+                <td style="background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-radius:16px;padding:20px;margin-bottom:24px;">
+                  <p style="font-size:14px;color:#6b21a8;font-weight:600;margin:0 0 8px 0;">
+                    💌 Next Steps:
+                  </p>
+                  <p style="font-size:14px;color:#4b5563;line-height:1.6;margin:0;">
+                    Please reply directly to this email at <strong style="color:#7c3aed;">${brandEmail}</strong> to start the conversation. They're waiting to hear from you!
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:12px;color:#6b7280;padding-bottom:16px;">
+                  This email was sent through InflueMatch. You can manage your collaboration preferences in your dashboard.
                 </td>
               </tr>
               <tr>

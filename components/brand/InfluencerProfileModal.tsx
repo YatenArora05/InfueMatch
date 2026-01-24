@@ -19,6 +19,8 @@ export default function InfluencerProfileModal({
 }: InfluencerProfileModalProps) {
   const [influencer, setInfluencer] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [isContacting, setIsContacting] = useState(false);
+  const [contactMessage, setContactMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   useEffect(() => {
     if (isOpen && influencerId) {
@@ -37,6 +39,45 @@ export default function InfluencerProfileModal({
       console.error('Error fetching influencer profile:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleContactInfluencer = async () => {
+    if (!email) {
+      setContactMessage({ type: 'error', text: 'Influencer email not available' });
+      return;
+    }
+
+    setIsContacting(true);
+    setContactMessage(null);
+
+    try {
+      const brandUserId = localStorage.getItem('userId');
+      if (!brandUserId) {
+        setContactMessage({ type: 'error', text: 'Please log in to contact influencers' });
+        setIsContacting(false);
+        return;
+      }
+
+      const response = await axios.post('/api/brand/contact-influencer', {
+        influencerId,
+        brandUserId,
+      });
+
+      if (response.status === 200) {
+        setContactMessage({ 
+          type: 'success', 
+          text: 'Email sent successfully! The influencer will receive a notification.' 
+        });
+      }
+    } catch (error: any) {
+      console.error('Error contacting influencer:', error);
+      setContactMessage({ 
+        type: 'error', 
+        text: error.response?.data?.message || 'Failed to send email. Please try again.' 
+      });
+    } finally {
+      setIsContacting(false);
     }
   };
 
@@ -242,14 +283,21 @@ export default function InfluencerProfileModal({
 
             {/* Footer with Contact Button */}
             <div className="sticky bottom-0 bg-white border-t border-gray-100 p-6">
+              {contactMessage && (
+                <div className={`mb-4 p-3 rounded-xl ${
+                  contactMessage.type === 'success' 
+                    ? 'bg-green-50 border border-green-200 text-green-700' 
+                    : 'bg-red-50 border border-red-200 text-red-700'
+                }`}>
+                  <p className="text-sm font-semibold text-center">{contactMessage.text}</p>
+                </div>
+              )}
               <Button
-                onClick={() => {
-                  // Handle contact action - you can implement this later
-                  window.location.href = `mailto:${email}`;
-                }}
-                className="w-full py-4 text-lg font-bold shadow-xl shadow-purple-100"
+                onClick={handleContactInfluencer}
+                disabled={isContacting || !email}
+                className="w-full py-4 text-lg font-bold shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Contact the Influencer
+                {isContacting ? "Sending..." : "Contact the Influencer"}
               </Button>
             </div>
           </div>
