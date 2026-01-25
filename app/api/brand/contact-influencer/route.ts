@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import Brand from "@/models/Brand";
+import Notification from "@/models/Notification";
 import { sendCollaborationEmail } from "@/lib/mailer";
 
 export async function POST(req: Request) {
@@ -52,6 +53,17 @@ export async function POST(req: Request) {
       brandName,
       brandEmail
     );
+
+    // Create notification for influencer
+    await Notification.create({
+      userId: influencerId,
+      type: "collaboration_request",
+      title: "New Collaboration Request",
+      message: `${brandName} has shown interest in your profile and wants to collaborate with you. Please check your email for details.`,
+      brandId: brandUserId,
+      brandName: brandName,
+      read: false,
+    });
 
     return NextResponse.json(
       { message: "Collaboration email sent successfully" },

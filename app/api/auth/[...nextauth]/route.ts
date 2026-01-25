@@ -24,6 +24,11 @@ const authOptions = {
 
           if (!user) return null; // User doesn't exist
 
+          // Check if user is blocked
+          if (user.isBlocked) {
+            throw new Error("Your account has been banned from this website. Please contact support for assistance.");
+          }
+
           // Verify the hashed password
           const passwordsMatch = await bcrypt.compare(password, user.password);
           if (!passwordsMatch) return null; // Incorrect password
@@ -31,6 +36,10 @@ const authOptions = {
           return user; // Successfully authenticated
         } catch (error) {
           console.log("Login Error: ", error);
+          // Re-throw blocked user error
+          if (error instanceof Error && error.message.includes("banned")) {
+            throw error;
+          }
           return null;
         }
       },

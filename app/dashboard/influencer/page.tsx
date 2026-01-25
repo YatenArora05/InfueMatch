@@ -123,7 +123,7 @@ export default function InfluencerDashboard() {
             <Sparkles size={32} className="md:w-10 md:h-10" />
           </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tighter mb-4 md:mb-6">
-            Welcome, <span className="text-purple-600">{isLoadingUser ? '...' : userName || 'User'}!</span>
+            Welcome, <span className="text-purple-600">{isLoadingUser ? '...' : userName || 'User'}</span>
           </h1>
           <p className="text-base md:text-xl text-gray-500 mb-6 md:mb-10 leading-relaxed px-4">
             Let's get your professional profile ready for top-tier brand collaborations.

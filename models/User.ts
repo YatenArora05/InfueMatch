@@ -8,7 +8,11 @@ const UserSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["brand", "influencer"],
+      enum: ["brand", "influencer", "admin"],
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
     },
     // Placeholders for future profile data from your onboarding forms
     profileComplete: { type: Boolean, default: false },
