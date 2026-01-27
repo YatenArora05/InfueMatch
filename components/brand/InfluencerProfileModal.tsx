@@ -21,6 +21,8 @@ export default function InfluencerProfileModal({
   const [loading, setLoading] = useState(false);
   const [isContacting, setIsContacting] = useState(false);
   const [contactMessage, setContactMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [isReporting, setIsReporting] = useState(false);
+  const [reportMessage, setReportMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   useEffect(() => {
     if (isOpen && influencerId) {
@@ -39,6 +41,40 @@ export default function InfluencerProfileModal({
       console.error('Error fetching influencer profile:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleReportInfluencer = async () => {
+    if (!influencerId) return;
+
+    setIsReporting(true);
+    setReportMessage(null);
+
+    try {
+      const response = await axios.post(`/api/influencers/${influencerId}/report`);
+
+      if (response.status === 200) {
+        const { reportCount, isBlocked, message } = response.data || {};
+
+        setInfluencer((prev: any) => ({
+          ...prev,
+          reportCount: reportCount ?? prev?.reportCount ?? 0,
+          isBlocked: typeof isBlocked === 'boolean' ? isBlocked : prev?.isBlocked,
+        }));
+
+        setReportMessage({
+          type: 'success',
+          text: message || 'Influencer reported successfully',
+        });
+      }
+    } catch (error: any) {
+      console.error('Error reporting influencer:', error);
+      setReportMessage({
+        type: 'error',
+        text: error.response?.data?.message || 'Failed to report influencer. Please try again.',
+      });
+    } finally {
+      setIsReporting(false);
     }
   };
 
@@ -97,6 +133,7 @@ export default function InfluencerProfileModal({
   const niche = influencer?.details?.niche || [];
   const dob = influencer?.details?.dob || "";   
   const profilePic = influencer?.details?.profilePic || null;
+  const reportCount: number = influencer?.reportCount ?? 0;
 
   const socials = influencer?.details?.socials || {};
   const instagram = socials.instagram || {};
@@ -131,7 +168,7 @@ export default function InfluencerProfileModal({
         ) : influencer ? (
           <div className="overflow-y-auto max-h-[90vh]">
             {/* Header Section */}
-            <div className="relative bg-gradient-to-br from-purple-600 to-purple-800 p-8 pt-12">
+            <div className="relative bg-linear-to-br from-purple-600 to-purple-800 p-8 pt-12">
               <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden border-4 border-white shadow-xl">
                   <img
@@ -160,6 +197,15 @@ export default function InfluencerProfileModal({
                       <span className="text-lg font-bold">{estimatedRate}</span>
                     </div>
                   )}
+                  <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-sm font-semibold">
+                    <Star size={16} className="text-yellow-300" />
+                    <span>
+                      Reports: {reportCount}
+                      {influencer?.isBlocked && (
+                        <span className="ml-2 text-red-200 font-bold">(Blocked)</span>
+                      )}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -283,22 +329,48 @@ export default function InfluencerProfileModal({
 
             {/* Footer with Contact Button */}
             <div className="sticky bottom-0 bg-white border-t border-gray-100 p-6">
-              {contactMessage && (
-                <div className={`mb-4 p-3 rounded-xl ${
-                  contactMessage.type === 'success' 
-                    ? 'bg-green-50 border border-green-200 text-green-700' 
-                    : 'bg-red-50 border border-red-200 text-red-700'
-                }`}>
-                  <p className="text-sm font-semibold text-center">{contactMessage.text}</p>
+              {(contactMessage || reportMessage) && (
+                <div className="mb-4 space-y-2">
+                  {contactMessage && (
+                    <div
+                      className={`p-3 rounded-xl ${
+                        contactMessage.type === 'success'
+                          ? 'bg-green-50 border border-green-200 text-green-700'
+                          : 'bg-red-50 border border-red-200 text-red-700'
+                      }`}
+                    >
+                      <p className="text-sm font-semibold text-center">{contactMessage.text}</p>
+                    </div>
+                  )}
+                  {reportMessage && (
+                    <div
+                      className={`p-3 rounded-xl ${
+                        reportMessage.type === 'success'
+                          ? 'bg-yellow-50 border border-yellow-200 text-yellow-800'
+                          : 'bg-red-50 border border-red-200 text-red-700'
+                      }`}
+                    >
+                      <p className="text-sm font-semibold text-center">{reportMessage.text}</p>
+                    </div>
+                  )}
                 </div>
               )}
-              <Button
-                onClick={handleContactInfluencer}
-                disabled={isContacting || !email}
-                className="w-full py-4 text-lg font-bold shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isContacting ? "Sending..." : "Contact the Influencer"}
-              </Button>
+              <div className="flex flex-col md:flex-row gap-3">
+                <Button
+                  onClick={handleContactInfluencer}
+                  disabled={isContacting || !email}
+                  className="w-full py-4 text-lg font-bold shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isContacting ? "Sending..." : "Contact the Influencer"}
+                </Button>
+                <Button
+                  onClick={handleReportInfluencer}
+                  disabled={isReporting}
+                  className="w-full py-4 text-lg font-bold border border-red-200 text-red-700 bg-red-50 hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isReporting ? "Reporting..." : "Report Influencer"}
+                </Button>
+              </div>
             </div>
           </div>
         ) : (

@@ -14,6 +14,11 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    reportCount: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
     // Placeholders for future profile data from your onboarding forms
     profileComplete: { type: Boolean, default: false },
     details: {

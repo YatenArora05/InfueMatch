@@ -88,7 +88,8 @@ export default function LoginForm() {
       if (response.data.user.role === 'influencer') {
         router.push('/dashboard/influencer');
       } else if (response.data.user.role === 'brand') {
-        router.push('/dashboard/brand');
+        // Send brands to profile setup first
+        router.push('/dashboard/brand/profile');
       } else {
         setSubmitError('Invalid user role');
         setIsLoading(false);

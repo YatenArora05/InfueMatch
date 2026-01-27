@@ -141,7 +141,8 @@ export default function SignupForm({ initialRole = 'brand' }: SignupFormProps) {
       if (role === 'influencer') {
         router.push('/dashboard/influencer');
       } else {
-        router.push('/dashboard/brand');
+        // For brands, start at the profile setup page instead of the dashboard
+        router.push('/dashboard/brand/profile');
       }
     } catch (error: any) {
       setSubmitError(
