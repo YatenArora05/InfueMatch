@@ -1,14 +1,14 @@
 "use client";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Briefcase, Calendar, ListTodo, BarChart3, HelpCircle, LogOut, Rocket, X } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Calendar, ListTodo, User, LogOut, Rocket, X } from 'lucide-react';
 
 const menuItems = [
   { name: 'Dashboard', icon: LayoutDashboard, href: '/dashboard/influencer' },
+  { name: 'Profile', icon: User, href: '/dashboard/influencer/profile' },
   { name: 'Brand Details', icon: Briefcase, href: '/dashboard/influencer/brand-details' },
   { name: 'Post Bookings', icon: Calendar, href: '/dashboard/influencer/post-bookings' },
   { name: 'Event Manager', icon: ListTodo, href: '/dashboard/influencer/event-manager' },
-//   { name: 'Analytics', icon: BarChart3, href: '/dashboard/influencer/analytics' },
 ];
 
 interface SidebarProps {
