@@ -15,9 +15,11 @@ interface Notification {
 
 interface NotificationBellProps {
   userId: string;
+  /** When true, styles the bell to match dashboard header (box, border) */
+  variant?: 'default' | 'header';
 }
 
-export default function NotificationBell({ userId }: NotificationBellProps) {
+export default function NotificationBell({ userId, variant = 'default' }: NotificationBellProps) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -105,47 +107,67 @@ export default function NotificationBell({ userId }: NotificationBellProps) {
     return date.toLocaleDateString();
   };
 
+  const buttonClass = variant === 'header'
+    ? 'relative p-2.5 bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl hover:bg-white transition-colors shadow-sm text-purple-600'
+    : 'relative p-2 text-purple-600 hover:text-purple-700 hover:bg-purple-50/50 rounded-full transition-colors';
+
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Bell Icon Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2.5 bg-white rounded-xl border border-gray-100 hover:bg-purple-50 hover:border-purple-200 transition-all shadow-sm"
+        className={buttonClass}
         aria-label="Notifications"
       >
-        <Bell size={20} className="text-purple-600" />
+        <Bell size={variant === 'header' ? 20 : 24} className="text-current" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+          <span className="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
         )}
       </button>
 
-      {/* Dropdown */}
+      {/* Dropdown - full-screen overlay on mobile, absolute panel on desktop */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 max-h-[500px] overflow-hidden flex flex-col">
-          {/* Header */}
-          <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-purple-50 to-indigo-50">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900">Notifications</h3>
-              {unreadCount > 0 && (
-                <p className="text-xs text-gray-600 mt-0.5">
-                  {unreadCount} unread {unreadCount === 1 ? 'notification' : 'notifications'}
-                </p>
-              )}
+        <>
+          {/* Mobile: backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-[100] md:hidden"
+            aria-hidden
+            onClick={() => setIsOpen(false)}
+          />
+          {/* Panel: bottom sheet on mobile; on desktop = absolute dropdown below bell (no layout distortion) */}
+          <div className="fixed bottom-0 left-0 right-0 z-[101] flex flex-col max-h-[85vh] rounded-t-2xl bg-white shadow-2xl overflow-hidden md:absolute md:bottom-auto md:left-auto md:right-0 md:top-full md:mt-2 md:w-96 md:max-h-[500px] md:rounded-2xl md:shadow-2xl md:border md:border-gray-100">
+            {/* Header */}
+            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-purple-50 to-indigo-50 shrink-0">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold text-gray-900">Notifications</h3>
+                {unreadCount > 0 && (
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    {unreadCount} unread {unreadCount === 1 ? 'notification' : 'notifications'}
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {unreadCount > 0 && (
+                  <button
+                    onClick={markAllAsRead}
+                    className="text-xs font-semibold text-purple-600 hover:text-purple-700 px-2 py-1 rounded-lg hover:bg-purple-100 transition-colors"
+                  >
+                    Mark all read
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="md:hidden p-2 -m-2 rounded-lg hover:bg-purple-100 text-gray-600 hover:text-gray-900 transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={22} />
+                </button>
+              </div>
             </div>
-            {unreadCount > 0 && (
-              <button
-                onClick={markAllAsRead}
-                className="text-xs font-semibold text-purple-600 hover:text-purple-700 px-2 py-1 rounded-lg hover:bg-purple-100 transition-colors"
-              >
-                Mark all read
-              </button>
-            )}
-          </div>
 
-          {/* Notifications List */}
-          <div className="overflow-y-auto flex-1">
+            {/* Notifications List */}
+            <div className="overflow-y-auto flex-1 min-h-0">
             {isLoading ? (
               <div className="p-8 text-center">
                 <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
@@ -206,8 +228,9 @@ export default function NotificationBell({ userId }: NotificationBellProps) {
                 ))}
               </div>
             )}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

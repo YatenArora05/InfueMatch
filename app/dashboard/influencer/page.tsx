@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import StatCard from '@/components/dashboard/StatCard';
-import { Bell, Search, AlertCircle, User, Mail } from 'lucide-react';
+import NotificationBell from '@/components/dashboard/NotificationBell';
+import { Mail } from 'lucide-react';
 import axios from 'axios';
-import Button from '@/components/ui/Button';
 import {
   LineChart,
   Line,
@@ -30,6 +30,7 @@ function parseFollowers(value: string): number {
 export default function InfluencerDashboard() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isProfileComplete, setIsProfileComplete] = useState<boolean | null>(null);
   const [progressData, setProgressData] = useState(() => {
@@ -47,13 +48,14 @@ export default function InfluencerDashboard() {
 
   const fetchUser = async () => {
     try {
-      const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
-      if (!userId) {
+      const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
+      if (!id) {
         setIsProfileComplete(false);
         setLoading(false);
         return;
       }
-      const response = await axios.get(`/api/user?id=${userId}`);
+      setUserId(id);
+      const response = await axios.get(`/api/user?id=${id}`);
       if (response.data?.user) {
         setUser(response.data.user);
         setIsProfileComplete(response.data.user.profileComplete === true);
@@ -71,6 +73,13 @@ export default function InfluencerDashboard() {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  // If profile setup is not done, show the same profile setup (redirect to profile page)
+  useEffect(() => {
+    if (!loading && isProfileComplete === false) {
+      router.replace('/dashboard/influencer/profile');
+    }
+  }, [loading, isProfileComplete, router]);
 
   useEffect(() => {
     if (!isProfileComplete) return;
@@ -134,17 +143,9 @@ export default function InfluencerDashboard() {
             <p className="text-gray-600 text-xs md:text-sm font-medium">Your overview and performance</p>
           </div>
           <div className="flex items-center gap-3 md:gap-6">
-            <div className="relative hidden lg:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 w-64 text-gray-900 placeholder:text-gray-400 text-sm"
-              />
-            </div>
-            <button className="p-2 md:p-2.5 bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl hover:bg-white transition-colors shadow-sm">
-              <Bell size={20} className="text-purple-600" />
-            </button>
+            {userId && (
+              <NotificationBell userId={userId} variant="header" />
+            )}
             <div className="flex items-center gap-2 md:gap-3 md:border-l md:border-purple-100 md:pl-6">
               <div className="text-right hidden sm:block">
                 <p className="text-xs md:text-sm font-bold text-gray-900">{fullName || 'Influencer'}</p>
@@ -165,22 +166,9 @@ export default function InfluencerDashboard() {
             </div>
           </div>
         ) : !isProfileComplete ? (
-          <div className="flex items-center justify-center min-h-[60vh] px-4">
-            <div className="max-w-md w-full bg-white border-2 border-red-100 rounded-2xl p-6 md:p-8 text-center shadow-lg">
-              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-red-50 text-red-600 rounded-full mb-4 md:mb-6">
-                <AlertCircle size={32} className="w-6 h-6 md:w-8 md:h-8" />
-              </div>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">Profile Setup Required</h2>
-              <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
-                Complete your profile to access the dashboard and connect with brands.
-              </p>
-              <Button
-                onClick={() => router.push('/dashboard/influencer/profile')}
-                className="w-full py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-purple-100 flex items-center justify-center gap-2"
-              >
-                <User size={20} className="w-5 h-5 md:w-5 md:h-5" /> Go to Profile Setup
-              </Button>
-            </div>
+          /* Redirecting to profile setup – show same dialog there; avoid flash of card */
+          <div className="flex items-center justify-center min-h-[40vh]">
+            <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
           <>
