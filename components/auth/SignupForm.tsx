@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
-import { Mail, Lock, ShieldCheck, Briefcase, Users, ArrowRight, User } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Lock, ShieldCheck, ArrowRight, User } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 interface SignupFormProps {
-  initialRole?: 'brand' | 'influencer';
+  role: 'brand' | 'influencer';
 }
 
-export default function SignupForm({ initialRole = 'brand' }: SignupFormProps) {
+export default function SignupForm({ role }: SignupFormProps) {
   const router = useRouter();
-  const [role, setRole] = useState<'brand' | 'influencer'>(initialRole);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -154,146 +154,126 @@ export default function SignupForm({ initialRole = 'brand' }: SignupFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Role Selection Toggle */}
-      <div className="grid grid-cols-2 gap-3 mb-5">
-        <button
-          type="button"
-          onClick={() => setRole('brand')}
-          className={`relative flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all ${
-            role === 'brand' 
-            ? 'border-purple-600 bg-purple-50/50 ring-4 ring-purple-100' 
-            : 'border-gray-100 bg-white hover:border-purple-200'
-          }`}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={role}
+          initial={{ opacity: 0, x: role === 'brand' ? 24 : -24, scale: 0.98 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: role === 'brand' ? -24 : 24, scale: 0.98 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+          className="space-y-4"
         >
-          <Briefcase className={role === 'brand' ? 'text-purple-600' : 'text-gray-400'} size={20} />
-          <span className={`font-bold text-sm ${role === 'brand' ? 'text-purple-900' : 'text-gray-500'}`}>Brand</span>
-          {role === 'brand' && <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-purple-600 rounded-full" />}
-        </button>
+          {/* Name Input */}
+          <div>
+            <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5 px-1">Full Name</label>
+            <div className="relative group">
+              <input 
+                type="text" 
+                className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+                  errors.name 
+                    ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500' 
+                    : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
+                }`}
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+              />
+              <User className={`absolute left-3 top-3 transition-colors ${errors.name ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
+            </div>
+            {errors.name && <p className="mt-1 text-xs text-red-400 px-1">{errors.name}</p>}
+          </div>
 
-        <button
-          type="button"
-          onClick={() => setRole('influencer')}
-          className={`relative flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all ${
-            role === 'influencer' 
-            ? 'border-purple-600 bg-purple-50/50 ring-4 ring-purple-100' 
-            : 'border-gray-100 bg-white hover:border-purple-200'
-          }`}
-        >
-          <Users className={role === 'influencer' ? 'text-purple-600' : 'text-gray-400'} size={20} />
-          <span className={`font-bold text-sm ${role === 'influencer' ? 'text-purple-900' : 'text-gray-500'}`}>Influencer</span>
-          {role === 'influencer' && <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-purple-600 rounded-full" />}
-        </button>
-      </div>
+          {/* Email Input */}
+          <div>
+            <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5 px-1">Email Address</label>
+            <div className="relative group">
+              <input 
+                type="email" 
+                className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+                  errors.email 
+                    ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500' 
+                    : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
+                }`}
+                placeholder="e.g. alex@creator.com"
+                value={formData.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+              />
+              <Mail className={`absolute left-3 top-3 transition-colors ${errors.email ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
+            </div>
+            {errors.email && <p className="mt-1 text-xs text-red-400 px-1">{errors.email}</p>}
+          </div>
 
-      {/* Name Input */}
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5 px-1">Full Name</label>
-        <div className="relative group">
-          <input 
-            type="text" 
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
-              errors.name 
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
-            }`}
-            placeholder="Enter your full name"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-          />
-          <User className={`absolute left-3 top-3 transition-colors ${errors.name ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
-        </div>
-        {errors.name && <p className="mt-1 text-xs text-red-500 px-1">{errors.name}</p>}
-      </div>
+          {/* Password Input */}
+          <div>
+            <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5 px-1">Create Password</label>
+            <div className="relative group">
+              <input 
+                type="password" 
+                className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+                  errors.password 
+                    ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500' 
+                    : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
+                }`}
+                placeholder="Min. 8 characters with special char"
+                value={formData.password}
+                onChange={(e) => handleChange('password', e.target.value)}
+              />
+              <Lock className={`absolute left-3 top-3 transition-colors ${errors.password ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
+            </div>
+            {errors.password && <p className="mt-1 text-xs text-red-400 px-1">{errors.password}</p>}
+          </div>
 
-      {/* Email Input */}
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5 px-1">Email Address</label>
-        <div className="relative group">
-          <input 
-            type="email" 
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
-              errors.email 
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
-            }`}
-            placeholder="e.g. alex@creator.com"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-          />
-          <Mail className={`absolute left-3 top-3 transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
-        </div>
-        {errors.email && <p className="mt-1 text-xs text-red-500 px-1">{errors.email}</p>}
-      </div>
+          {/* Confirm Password Input */}
+          <div>
+            <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5 px-1">Confirm Password</label>
+            <div className="relative group">
+              <input 
+                type="password" 
+                className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+                  errors.confirmPassword 
+                    ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500' 
+                    : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
+                }`}
+                placeholder="Repeat your password"
+                value={formData.confirmPassword}
+                onChange={(e) => handleChange('confirmPassword', e.target.value)}
+              />
+              <ShieldCheck className={`absolute left-3 top-3 transition-colors ${errors.confirmPassword ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
+            </div>
+            {errors.confirmPassword && <p className="mt-1 text-xs text-red-400 px-1">{errors.confirmPassword}</p>}
+          </div>
 
-      {/* Password Input */}
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5 px-1">Create Password</label>
-        <div className="relative group">
-          <input 
-            type="password" 
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
-              errors.password 
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
-            }`}
-            placeholder="Min. 8 characters with special char"
-            value={formData.password}
-            onChange={(e) => handleChange('password', e.target.value)}
-          />
-          <Lock className={`absolute left-3 top-3 transition-colors ${errors.password ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
-        </div>
-        {errors.password && <p className="mt-1 text-xs text-red-500 px-1">{errors.password}</p>}
-      </div>
-
-      {/* Confirm Password Input */}
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5 px-1">Confirm Password</label>
-        <div className="relative group">
-          <input 
-            type="password" 
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
-              errors.confirmPassword 
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
-            }`}
-            placeholder="Repeat your password"
-            value={formData.confirmPassword}
-            onChange={(e) => handleChange('confirmPassword', e.target.value)}
-          />
-          <ShieldCheck className={`absolute left-3 top-3 transition-colors ${errors.confirmPassword ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
-        </div>
-        {errors.confirmPassword && <p className="mt-1 text-xs text-red-500 px-1">{errors.confirmPassword}</p>}
-      </div>
-
-      {submitError && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-xl">
-          <p className="text-sm text-red-600 text-center">{submitError}</p>
-        </div>
-      )}
-      
-      <Button 
-        type="submit" 
-        className="w-full py-3 text-base mt-3 group"
-        disabled={isLoading}
-      >
-        {isLoading ? 'Creating Account...' : `Create ${role.charAt(0).toUpperCase() + role.slice(1)} Account`}
-        {!isLoading && <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />}
-      </Button>
-
-      <div className="relative my-5">
-        <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
-        <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-gray-400">Or continue with</span></div>
-      </div>
-
-      {/* Google Sign Up */}
-      <button 
-        type="button"
-        onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-        className="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all active:scale-95 font-medium text-gray-700 text-sm"
-      >
-        <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />
-        Sign up with Google
-      </button>
+          {submitError && (
+            <div className="p-3 bg-red-900/20 border border-red-500/30 rounded-xl">
+              <p className="text-sm text-red-400 text-center">{submitError}</p>
+            </div>
+          )}
+          
+          <Button 
+            type="submit" 
+            className="w-full py-3 text-base mt-3 group"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Creating Account...' : `Create ${role.charAt(0).toUpperCase() + role.slice(1)} Account`}
+            {!isLoading && <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />}
+          </Button>
+          
+          <div className="relative my-5">
+            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#1F2937]"></span></div>
+            <div className="relative flex justify-center text-xs uppercase"><span className="bg-[#020617] px-2 text-[#9CA3AF]">Or continue with</span></div>
+          </div>
+          
+          {/* Google Sign Up */}
+          <button 
+            type="button"
+            onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+            className="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-[#1F2937] rounded-xl hover:bg-[#0B1120] transition-all active:scale-95 font-medium text-[#E5E7EB] text-sm bg-[#020617]"
+          >
+            <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />
+            Sign up with Google
+          </button>
+        </motion.div>
+      </AnimatePresence>
     </form>
   );
 }

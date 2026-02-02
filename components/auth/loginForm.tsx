@@ -106,42 +106,42 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Email Input */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
+        <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5">Email Address</label>
         <div className="relative group">
           <input
             type="email"
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
               errors.email
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
+                ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500'
+                : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
             }`}
             placeholder="name@company.com"
             value={formData.email}
             onChange={(e) => handleChange('email', e.target.value)}
           />
-          <Mail className={`absolute left-3 top-3 transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
+          <Mail className={`absolute left-3 top-3 transition-colors ${errors.email ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
         </div>
-        {errors.email && <p className="mt-1 text-xs text-red-500 px-1">{errors.email}</p>}
+        {errors.email && <p className="mt-1 text-xs text-red-400 px-1">{errors.email}</p>}
       </div>
 
       {/* Password Input */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
+        <label className="block text-sm font-semibold text-[#E5E7EB] mb-1.5">Password</label>
         <div className="relative group">
           <input
             type="password"
-            className={`w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl focus:ring-2 focus:bg-white transition-all outline-none text-sm text-gray-900 ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
               errors.password
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                : 'border-gray-200 focus:ring-purple-500 focus:border-transparent'
+                ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500'
+                : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
             }`}
             placeholder="••••••••"
             value={formData.password}
             onChange={(e) => handleChange('password', e.target.value)}
           />
-          <Lock className={`absolute left-3 top-3 transition-colors ${errors.password ? 'text-red-400' : 'text-gray-400 group-focus-within:text-purple-500'}`} size={16} />
+          <Lock className={`absolute left-3 top-3 transition-colors ${errors.password ? 'text-red-400' : 'text-[#6B7280] group-focus-within:text-[#3B82F6]'}`} size={16} />
         </div>
-        {errors.password && <p className="mt-1 text-xs text-red-500 px-1">{errors.password}</p>}
+        {errors.password && <p className="mt-1 text-xs text-red-400 px-1">{errors.password}</p>}
       </div>
 
       {/* Forgot password link */}
@@ -149,15 +149,15 @@ export default function LoginForm() {
         <button
           type="button"
           onClick={() => router.push("/forgot-password")}
-          className="text-xs font-semibold text-purple-600 hover:text-purple-700"
+          className="text-xs font-semibold text-[#3B82F6] hover:text-[#60A5FA]"
         >
           Forgot password?
         </button>
       </div>
 
       {submitError && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-xl">
-          <p className="text-sm text-red-600 text-center">{submitError}</p>
+        <div className="p-3 bg-red-900/20 border border-red-500/30 rounded-xl">
+          <p className="text-sm text-red-400 text-center">{submitError}</p>
         </div>
       )}
 

@@ -15,9 +15,9 @@ export default function Button({
   const baseStyles = "inline-flex items-center justify-center font-semibold transition-all duration-200 active:scale-95 rounded-xl";
   
   const variants = {
-    primary: "bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200",
-    secondary: "bg-purple-100 text-purple-700 hover:bg-purple-200",
-    outline: "bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
+    primary: "bg-[#3B82F6] text-white hover:bg-[#1D4ED8] hover:shadow-lg hover:shadow-blue-900/40",
+    secondary: "bg-[#0B1120] text-[#3B82F6] hover:bg-[#111827] border border-[#1F2937]",
+    outline: "bg-transparent border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-[#0B1120]"
   };
 
   const sizes = {

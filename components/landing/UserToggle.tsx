@@ -9,9 +9,12 @@ export default function UserToggle() {
 
   return (
     <section className="py-16 flex flex-col items-center relative overflow-hidden bg-[#0F0F0F]">
+      {/* Smooth gradient transition from Hero to Features */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0F0F0F] via-[#0A0A0F] to-[#050816]" />
+      
       {/* Background Decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#1E3A8A]/30 rounded-full blur-[140px] opacity-70" />
-      <div className="absolute -bottom-24 right-0 w-[520px] h-[520px] bg-[#3B82F6]/20 rounded-full blur-[140px] opacity-70" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#1E3A8A]/30 rounded-full blur-[140px] opacity-70 z-[1]" />
+      <div className="absolute -bottom-24 right-0 w-[520px] h-[520px] bg-[#3B82F6]/20 rounded-full blur-[140px] opacity-70 z-[1]" />
       
       <div className="relative z-10 w-full max-w-5xl px-6">
         <div className="bg-[#020617] p-1 rounded-2xl flex gap-1 mb-12 border border-[#1F2937] max-w-md mx-auto shadow-sm">
