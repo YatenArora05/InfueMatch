@@ -35,9 +35,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Landing page: force all icons to accent blue */
+/* Landing page: force most icons to accent blue */
 .landing-icon-scope svg {
   color: #3B82F6;
+}
+
+/* But keep navbar logo rocket white so it stays visible on blue */
+.navbar-logo-icon {
+  color: #ffffff !important;
 }
 
 /* Make all input fields have black text */
