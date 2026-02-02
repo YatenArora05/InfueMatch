@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 :root {
+  /* Landing page theme colors */
+  --bg-black: #0F0F0F;
+  --accent-blue: #3B82F6;
+  --text-white: #E5E7EB;
+
+  /* Default app theme (non-landing pages) */
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -27,6 +33,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Landing page: force all icons to accent blue */
+.landing-icon-scope svg {
+  color: #3B82F6;
 }
 
 /* Make all input fields have black text */

@@ -8,7 +8,7 @@ import Footer from '@/components/layout/Footer';
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen selection:bg-purple-200 overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden bg-[#0F0F0F] text-[#E5E7EB] selection:bg-[#3B82F6]/40 landing-icon-scope">
       <Navbar />
       <Hero />
       <UserToggle /> 

@@ -11,8 +11,8 @@ const pricingPlans = [
     price: 'Free',
     period: 'forever',
     description: 'Perfect for new creators and small brands',
-    color: 'from-purple-500 to-purple-600',
-    borderColor: 'border-purple-200',
+    color: 'from-[#3B82F6] to-[#1D4ED8]',
+    borderColor: 'border-[#1F2937]',
     features: [
       'Profile creation',
       'Basic brand discovery',
@@ -29,8 +29,8 @@ const pricingPlans = [
     price: '$49',
     period: '/month',
     description: 'For growing influencers and established brands',
-    color: 'from-indigo-500 to-purple-600',
-    borderColor: 'border-indigo-300',
+    color: 'from-[#3B82F6] to-[#60A5FA]',
+    borderColor: 'border-[#3B82F6]/60',
     features: [
       'Everything in Starter',
       'Unlimited connections',
@@ -49,8 +49,8 @@ const pricingPlans = [
     price: 'Custom',
     period: '',
     description: 'Tailored solutions for large organizations',
-    color: 'from-violet-500 to-indigo-600',
-    borderColor: 'border-violet-200',
+    color: 'from-[#1D4ED8] to-[#3B82F6]',
+    borderColor: 'border-[#1F2937]',
     features: [
       'Everything in Professional',
       'Custom integrations',
@@ -67,20 +67,23 @@ const pricingPlans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section id="pricing" className="py-20 bg-[#020617] relative overflow-hidden">
       {/* Background Decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-purple-100/50 to-indigo-100/50 rounded-full blur-[150px] opacity-30" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-[#1E3A8A]/40 to-[#0F172A]/60 rounded-full blur-[150px] opacity-60" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-1.5 mb-4 text-sm font-medium tracking-wide text-purple-700 bg-purple-50 rounded-full border border-purple-100">
+          <div className="inline-block px-4 py-1.5 mb-4 text-sm font-medium tracking-wide text-[#93C5FD] bg-[#020617] rounded-full border border-[#1E3A8A]/60">
             Transparent Pricing
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Choose Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">Plan</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#E5E7EB] mb-4 tracking-tight">
+            Choose Your{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3B82F6] via-[#60A5FA] to-[#93C5FD]">
+              Plan
+            </span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-[#9CA3AF] max-w-2xl mx-auto">
             Start free, scale as you grow. No hidden fees, cancel anytime.
           </p>
         </div>
@@ -107,10 +110,10 @@ export default function Pricing() {
 
                 {/* Card */}
                 <div
-                  className={`relative p-8 bg-white rounded-3xl border-2 ${
-                    plan.popular ? plan.borderColor : 'border-gray-200'
+                  className={`relative p-8 bg-[#020617] rounded-3xl border ${
+                    plan.popular ? plan.borderColor : 'border-[#1F2937]'
                   } shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col ${
-                    plan.popular ? 'ring-2 ring-purple-200 ring-opacity-50' : ''
+                    plan.popular ? 'ring-2 ring-[#3B82F6]/40 ring-opacity-50' : ''
                   } group-hover:scale-105`}
                 >
                   {/* Icon & Name */}
@@ -118,21 +121,33 @@ export default function Pricing() {
                     <div className={`w-14 h-14 bg-gradient-to-br ${plan.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
                       <Icon className="text-white" size={24} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                    <p className="text-sm text-gray-500">{plan.description}</p>
+                    <h3 className="text-2xl font-bold text-[#E5E7EB] mb-2">
+                      {plan.name}
+                    </h3>
+                    <p className="text-sm text-[#9CA3AF]">
+                      {plan.description}
+                    </p>
                   </div>
 
                   {/* Price */}
-                  <div className="mb-6 pb-6 border-b border-gray-100">
+                  <div className="mb-6 pb-6 border-b border-[#1F2937]">
                     <div className="flex items-baseline gap-2">
                       {plan.price === 'Free' ? (
-                        <span className="text-4xl font-extrabold text-gray-900">{plan.price}</span>
+                        <span className="text-4xl font-extrabold text-[#E5E7EB]">
+                          {plan.price}
+                        </span>
                       ) : plan.price === 'Custom' ? (
-                        <span className="text-4xl font-extrabold text-gray-900">{plan.price}</span>
+                        <span className="text-4xl font-extrabold text-[#E5E7EB]">
+                          {plan.price}
+                        </span>
                       ) : (
                         <>
-                          <span className="text-4xl font-extrabold text-gray-900">{plan.price}</span>
-                          <span className="text-gray-500">{plan.period}</span>
+                          <span className="text-4xl font-extrabold text-[#E5E7EB]">
+                            {plan.price}
+                          </span>
+                          <span className="text-[#9CA3AF]">
+                            {plan.period}
+                          </span>
                         </>
                       )}
                     </div>
@@ -142,8 +157,10 @@ export default function Pricing() {
                   <ul className="flex-1 space-y-4 mb-8">
                     {plan.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <Check className="text-purple-600 flex-shrink-0 mt-0.5" size={18} />
-                        <span className="text-gray-700 text-sm">{feature}</span>
+                        <Check className="text-[#3B82F6] flex-shrink-0 mt-0.5" size={18} />
+                        <span className="text-[#D1D5DB] text-sm">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -154,7 +171,7 @@ export default function Pricing() {
                     className={`block w-full py-3.5 rounded-xl font-bold text-center transition-all ${
                       plan.popular
                         ? `bg-gradient-to-r ${plan.color} text-white hover:shadow-lg hover:scale-105 active:scale-95`
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200 active:scale-95'
+                        : 'bg-[#0F172A] text-[#E5E7EB] hover:bg-[#111827] active:scale-95'
                     }`}
                   >
                     {plan.cta}
@@ -167,9 +184,12 @@ export default function Pricing() {
 
         {/* FAQ Note */}
         <div className="mt-12 text-center">
-          <p className="text-gray-500 text-sm">
-            All plans include a 14-day free trial. No credit card required.{' '}
-            <a href="#faq" className="text-purple-600 font-semibold hover:underline">
+          <p className="text-[#9CA3AF] text-sm">
+            All plans include a 14-day free trial. No credit card required.{" "}
+            <a
+              href="#faq"
+              className="text-[#3B82F6] font-semibold hover:underline"
+            >
               See FAQ
             </a>
           </p>

@@ -23,16 +23,16 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0F0F0F] pt-20">
       {/* Background Gradient Blobs - Interactive */}
       <div 
-        className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-purple-100 rounded-full blur-[120px] opacity-60 transition-transform duration-300"
+        className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-[#1D4ED8]/40 rounded-full blur-[140px] opacity-70 transition-transform duration-300"
         style={{
           transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px) translate(-12px, 48px)`
         }}
       />
       <div 
-        className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[400px] h-[400px] bg-indigo-50 rounded-full blur-[100px] opacity-50 transition-transform duration-300"
+        className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[400px] h-[400px] bg-[#2563EB]/30 rounded-full blur-[120px] opacity-70 transition-transform duration-300"
         style={{
           transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * -0.02}px) translate(-96px, 96px)`
         }}
@@ -40,13 +40,13 @@ export default function Hero() {
       
       <div className="container mx-auto px-6 relative z-10 text-center">
         {/* Modern Badge */}
-        <div className="inline-block px-4 py-1.5 mb-3 -mt-4 text-sm font-medium tracking-wide text-purple-700 bg-purple-50 rounded-full border border-purple-100 animate-fade-in">
+        <div className="inline-block px-4 py-1.5 mb-3 -mt-4 text-sm font-medium tracking-wide text-[#93C5FD] bg-[#111827] rounded-full border border-[#1D4ED8]/40 animate-fade-in">
           ✨ The #1 Platform for Creator Partnerships
         </div>
          {/* Middle Section */}
-        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tighter leading-[1.1] transition-transform duration-300 hover:scale-105">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-[#E5E7EB] mb-6 tracking-tighter leading-[1.1] transition-transform duration-300 hover:scale-105">
           Match. Collaborate. <br />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-500">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3B82F6] via-[#60A5FA] to-[#93C5FD]">
             Scale Your Influence.
           </span>
         </h1>
@@ -57,21 +57,21 @@ export default function Hero() {
         </p> */}
         {/* Main Section */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <Link href="/signup?role=brand" className="group relative px-7 py-3.5 bg-purple-600 text-white rounded-xl font-bold text-base hover:bg-purple-700 transition-all shadow-xl shadow-purple-200 active:scale-95 overflow-hidden inline-block">
+          <Link href="/signup?role=brand" className="group relative px-7 py-3.5 bg-[#3B82F6] text-white rounded-xl font-bold text-base hover:bg-[#2563EB] transition-all shadow-xl shadow-blue-900/40 active:scale-95 overflow-hidden inline-block">
             <span className="relative z-10">I am a Brand</span>
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           </Link>
           
-          <Link href="/signup?role=influencer" className="px-7 py-3.5 bg-white text-gray-900 border-2 border-gray-100 rounded-xl font-bold text-base hover:border-purple-600 hover:text-purple-600 transition-all active:scale-95 shadow-sm inline-block">
+          <Link href="/signup?role=influencer" className="px-7 py-3.5 bg-transparent text-[#E5E7EB] border border-[#374151] rounded-xl font-bold text-base hover:border-[#3B82F6] hover:text-[#3B82F6] transition-all active:scale-95 shadow-sm inline-block">
             I am an Influencer
           </Link>
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block animate-bounce">
+        {/* <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block animate-bounce">
           <button
             onClick={handleScrollDown}
-            className="flex flex-col items-center gap-2 text-gray-400 hover:text-purple-600 transition-colors group"
+            className="flex flex-col items-center gap-2 text-[#9CA3AF] hover:text-[#3B82F6] transition-colors group"
             aria-label="Scroll down"
           >
             <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
@@ -79,7 +79,7 @@ export default function Hero() {
               <ChevronDown size={16} className="animate-pulse" />
             </div>
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
