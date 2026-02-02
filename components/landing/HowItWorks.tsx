@@ -73,7 +73,7 @@ export default function HowItWorks() {
                 <div className="relative p-8 bg-[#020617] rounded-3xl border border-[#1F2937] shadow-sm hover:shadow-xl hover:border-[#3B82F6]/60 transition-all duration-300 h-full group-hover:-translate-y-2">
                   {/* Icon */}
                   <div className={`w-16 h-16 ${step.color}   rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
-                    <Icon className="text-white" size={28} />
+                    <Icon className="landing-icon-white" size={28} />
                   </div>
 
                   {/* Content */}

@@ -24,15 +24,50 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0F0F0F] pt-20">
+      {/* Neon Grid Background */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.4) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.4) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            backgroundPosition: "0 0",
+          }}
+        />
+        {/* Grid Glow Effect */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.15) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            filter: "blur(0.5px)",
+            boxShadow: "inset 0 0 100px rgba(59,130,246,0.1)",
+          }}
+        />
+        {/* Fade edges with radial gradient */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 0%, rgba(15,15,15,0.8) 70%, rgba(15,15,15,1) 100%)",
+          }}
+        />
+      </div>
+
       {/* Background Gradient Blobs - Interactive */}
       <div 
-        className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-[#1D4ED8]/40 rounded-full blur-[140px] opacity-70 transition-transform duration-300"
+        className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-[#1D4ED8]/40 rounded-full blur-[140px] opacity-70 transition-transform duration-300 z-[1]"
         style={{
           transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px) translate(-12px, 48px)`
         }}
       />
       <div 
-        className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[400px] h-[400px] bg-[#2563EB]/30 rounded-full blur-[120px] opacity-70 transition-transform duration-300"
+        className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[400px] h-[400px] bg-[#2563EB]/30 rounded-full blur-[120px] opacity-70 transition-transform duration-300 z-[1]"
         style={{
           transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * -0.02}px) translate(-96px, 96px)`
         }}

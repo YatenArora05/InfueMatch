@@ -45,6 +45,11 @@ body {
   color: #ffffff !important;
 }
 
+/* Icons inside gradient squares on landing sections should be white */
+.landing-icon-white {
+  color: #ffffff !important;
+}
+
 /* Make all input fields have black text */
 input,
 textarea,

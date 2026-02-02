@@ -119,7 +119,7 @@ export default function Pricing() {
                   {/* Icon & Name */}
                   <div className="mb-6">
                     <div className={`w-14 h-14 bg-gradient-to-br ${plan.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
-                      <Icon className="text-white" size={24} />
+                      <Icon className="landing-icon-white" size={24} />
                     </div>
                     <h3 className="text-2xl font-bold text-[#E5E7EB] mb-2">
                       {plan.name}

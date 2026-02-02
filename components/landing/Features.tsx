@@ -35,7 +35,7 @@ export default function Features() {
           {/* For Brands */}
           <div className="group p-8 bg-[#020617] rounded-3xl shadow-sm border border-[#1F2937] hover:border-[#3B82F6]/60 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="w-14 h-14 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-white rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shadow-blue-900/40">
-              <BarChart size={26} />
+              <BarChart size={26} className="landing-icon-white" />
             </div>
             <h3 className="text-2xl font-bold mb-4 text-[#E5E7EB]">
               For Brands
@@ -63,7 +63,7 @@ export default function Features() {
           {/* For Influencers */}
           <div className="group p-8 bg-[#020617] rounded-3xl shadow-sm border border-[#1F2937] hover:border-[#3B82F6]/60 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="w-14 h-14 bg-gradient-to-br from-[#1D4ED8] to-[#3B82F6] text-white rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shadow-blue-900/40">
-              <Zap size={26} />
+              <Zap size={26} className="landing-icon-white" />
             </div>
             <h3 className="text-2xl font-bold mb-4 text-[#E5E7EB]">
               For Influencers
