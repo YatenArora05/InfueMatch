@@ -7,9 +7,43 @@ import LoginForm from '@/components/auth/loginForm';
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-[#0F0F0F] text-[#E5E7EB] flex flex-col justify-center py-4 px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Blurs / Gradient to match landing */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#020617] to-[#050816] -z-10" />
+    <div className="min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center py-4 px-6 lg:px-8 relative overflow-hidden">
+      {/* Neon Grid Background - duller resolution */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.3) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            backgroundPosition: "0 0",
+          }}
+        />
+        {/* Grid Glow Effect */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.12) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.12) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            filter: "blur(0.5px)",
+            boxShadow: "inset 0 0 100px rgba(59,130,246,0.06)",
+          }}
+        />
+        {/* Fade edges with radial gradient - blue tinted */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.8) 70%, rgba(2,6,23,1) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Background Decorative Blobs */}
       <div className="absolute top-[-120px] left-[-80px] w-[420px] h-[420px] bg-[#1E3A8A]/45 rounded-full blur-[120px] opacity-80 -z-10" />
       <div className="absolute bottom-[-160px] right-[-40px] w-[480px] h-[480px] bg-[#3B82F6]/35 rounded-full blur-[140px] opacity-80 -z-10" />
       
