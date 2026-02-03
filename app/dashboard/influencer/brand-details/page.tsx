@@ -42,19 +42,19 @@ export default function BrandDetailsPage() {
     <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] gap-4 lg:gap-6 overflow-hidden">
       
       {/* MOBILE BRAND SELECTOR BUTTON */}
-      <div className="lg:hidden flex items-center gap-3 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+      <div className="lg:hidden flex items-center gap-3 p-4 bg-[#0B1220]/90 rounded-2xl border border-[#1F2937] shadow-xl shadow-blue-900/10">
         <button
           onClick={() => setIsMobileListOpen(true)}
           className="flex items-center gap-3 flex-1 text-left"
         >
-          <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center p-2">
+          <div className="w-10 h-10 rounded-xl bg-[#1F2937] flex items-center justify-center p-2">
             <img src={getBrandSvg(selectedBrand.slug, selectedBrand.color)} alt={selectedBrand.name} className="w-full h-full object-contain" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-sm text-gray-900">{selectedBrand.name}</p>
-            <p className="text-[10px] uppercase font-bold tracking-tighter text-gray-400">{selectedBrand.category}</p>
+            <p className="font-bold text-sm text-[#E5E7EB]">{selectedBrand.name}</p>
+            <p className="text-[10px] uppercase font-bold tracking-tighter text-[#9CA3AF]">{selectedBrand.category}</p>
           </div>
-          <Filter size={18} className="text-gray-400" />
+          <Filter size={18} className="text-[#9CA3AF]" />
         </button>
       </div>
 
@@ -65,29 +65,29 @@ export default function BrandDetailsPage() {
             className="lg:hidden fixed inset-0 bg-black/50 z-40"
             onClick={() => setIsMobileListOpen(false)}
           />
-          <div className="lg:hidden fixed inset-y-0 left-0 w-80 bg-white z-50 shadow-2xl overflow-y-auto">
-            <div className="p-4 border-b border-gray-100">
+          <div className="lg:hidden fixed inset-y-0 left-0 w-80 bg-[#0F0F0F] border-r border-[#1F2937] z-50 shadow-2xl overflow-y-auto">
+            <div className="p-4 border-b border-[#1F2937]">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-black text-gray-900">Brand Directory</h2>
+                <h2 className="text-lg font-black text-[#E5E7EB]">Brand Directory</h2>
                 <button
                   onClick={() => setIsMobileListOpen(false)}
-                  className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#1F2937] rounded-lg transition-colors"
                 >
                   ×
                 </button>
               </div>
               <div className="relative mb-4">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7280]" size={16} />
                 <input 
                   type="text" 
                   placeholder="Search 15+ Brands..." 
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-purple-500 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#0B1220] border border-[#1F2937] rounded-xl text-sm text-[#E5E7EB] placeholder:text-[#6B7280] focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/50 transition-all"
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <div className="flex justify-between items-center px-1">
-                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Directory</span>
-                <Filter size={14} className="text-gray-400" />
+                <span className="text-[10px] font-black text-[#9CA3AF] uppercase tracking-widest">Directory</span>
+                <Filter size={14} className="text-[#9CA3AF]" />
               </div>
             </div>
             <div className="p-2 space-y-1">
@@ -100,16 +100,16 @@ export default function BrandDetailsPage() {
                   }}
                   className={`w-full flex items-center gap-4 p-4 rounded-3xl transition-all ${
                     selectedBrand.id === brand.id 
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' 
-                    : 'hover:bg-purple-50 text-gray-600 hover:text-purple-600'
+                    ? 'bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white shadow-lg shadow-blue-500/30' 
+                    : 'hover:bg-[#1F2937] text-[#9CA3AF] hover:text-[#E5E7EB]'
                   }`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center p-2 ${selectedBrand.id === brand.id ? 'bg-white' : 'bg-gray-100'}`}>
-                    <img src={getBrandSvg(brand.slug, selectedBrand.id === brand.id ? brand.color : '6b7280')} alt={brand.name} className="w-full h-full object-contain" />
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center p-2 ${selectedBrand.id === brand.id ? 'bg-white/20' : 'bg-[#1F2937]'}`}>
+                    <img src={getBrandSvg(brand.slug, selectedBrand.id === brand.id ? brand.color : '9ca3af')} alt={brand.name} className="w-full h-full object-contain" />
                   </div>
                   <div className="text-left">
                     <p className="font-bold text-sm leading-none mb-1">{brand.name}</p>
-                    <p className={`text-[10px] uppercase font-bold tracking-tighter ${selectedBrand.id === brand.id ? 'text-purple-200' : 'text-gray-400'}`}>
+                    <p className={`text-[10px] uppercase font-bold tracking-tighter ${selectedBrand.id === brand.id ? 'text-blue-200' : 'text-[#9CA3AF]'}`}>
                       {brand.category}
                     </p>
                   </div>
@@ -121,20 +121,20 @@ export default function BrandDetailsPage() {
       )}
       
       {/* MASTER LIST (Left) - Desktop Only */}
-      <div className="hidden lg:flex w-80 flex-col bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden shrink-0">
-        <div className="p-5 border-b border-gray-50">
+      <div className="hidden lg:flex w-80 flex-col bg-[#0B1220]/90 rounded-[2.5rem] border border-[#1F2937] shadow-xl shadow-blue-900/10 overflow-hidden shrink-0">
+        <div className="p-5 border-b border-[#1F2937]">
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7280]" size={16} />
             <input 
               type="text" 
               placeholder="Search 15+ Brands..." 
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-purple-500 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 bg-[#0F0F0F] border border-[#1F2937] rounded-2xl text-sm text-[#E5E7EB] placeholder:text-[#6B7280] focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/50 transition-all"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <div className="flex justify-between items-center px-1">
-            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Directory</span>
-            <Filter size={14} className="text-gray-400" />
+            <span className="text-[10px] font-black text-[#9CA3AF] uppercase tracking-widest">Directory</span>
+            <Filter size={14} className="text-[#9CA3AF]" />
           </div>
         </div>
 
@@ -145,16 +145,16 @@ export default function BrandDetailsPage() {
               onClick={() => setSelectedBrand(brand)}
               className={`w-full flex items-center gap-4 p-4 rounded-3xl transition-all ${
                 selectedBrand.id === brand.id 
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' 
-                : 'hover:bg-purple-50 text-gray-600 hover:text-purple-600'
+                ? 'bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white shadow-lg shadow-blue-500/30' 
+                : 'hover:bg-[#1F2937] text-[#9CA3AF] hover:text-[#E5E7EB]'
               }`}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center p-2 ${selectedBrand.id === brand.id ? 'bg-white' : 'bg-gray-100'}`}>
-                <img src={getBrandSvg(brand.slug, selectedBrand.id === brand.id ? brand.color : '6b7280')} alt={brand.name} className="w-full h-full object-contain" />
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center p-2 ${selectedBrand.id === brand.id ? 'bg-white/20' : 'bg-[#1F2937]'}`}>
+                <img src={getBrandSvg(brand.slug, selectedBrand.id === brand.id ? brand.color : '9ca3af')} alt={brand.name} className="w-full h-full object-contain" />
               </div>
               <div className="text-left">
                 <p className="font-bold text-sm leading-none mb-1">{brand.name}</p>
-                <p className={`text-[10px] uppercase font-bold tracking-tighter ${selectedBrand.id === brand.id ? 'text-purple-200' : 'text-gray-400'}`}>
+                <p className={`text-[10px] uppercase font-bold tracking-tighter ${selectedBrand.id === brand.id ? 'text-blue-200' : 'text-[#9CA3AF]'}`}>
                   {brand.category}
                 </p>
               </div>
@@ -164,37 +164,36 @@ export default function BrandDetailsPage() {
       </div>
 
       {/* DETAIL VIEW (Right) */}
-      <div className="flex-1 bg-white rounded-2xl lg:rounded-[2.5rem] border border-gray-100 shadow-sm overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-10 relative min-w-0">
-        {/* Decorative Background Icon - Hidden on mobile */}
-        <div className="hidden lg:block absolute top-10 right-10 opacity-[0.03] scale-[4] pointer-events-none overflow-hidden">
-            <img src={getBrandSvg(selectedBrand.slug, '000')} alt="" className="w-24" />
+      <div className="flex-1 bg-[#0B1220]/90 backdrop-blur-sm rounded-2xl lg:rounded-[2.5rem] border border-[#1F2937] shadow-xl shadow-blue-900/10 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-10 relative min-w-0">
+        <div className="hidden lg:block absolute top-10 right-10 opacity-[0.06] scale-[4] pointer-events-none overflow-hidden">
+            <img src={getBrandSvg(selectedBrand.slug, '3B82F6')} alt="" className="w-24" />
         </div>
 
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] bg-white border border-gray-100 p-4 sm:p-5 lg:p-6 shadow-xl shadow-gray-100 flex items-center justify-center">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] bg-[#1F2937] border border-[#374151] p-4 sm:p-5 lg:p-6 flex items-center justify-center">
               <img src={getBrandSvg(selectedBrand.slug, selectedBrand.color)} alt={selectedBrand.name} className="w-full h-full object-contain" />
             </div>
             <div>
               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">{selectedBrand.name}</h1>
-                <CheckCircle className="text-blue-500 fill-blue-500/10 w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#E5E7EB] tracking-tight">{selectedBrand.name}</h1>
+                <CheckCircle className="text-[#3B82F6] fill-[#3B82F6]/20 w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
               </div>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
-                <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-gray-900 text-white rounded-full text-[10px] font-black uppercase tracking-widest">
+                <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-[#3B82F6] text-white rounded-full text-[10px] font-black uppercase tracking-widest">
                   {selectedBrand.category}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-400">
+                <span className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#9CA3AF]">
                   <Globe size={16} className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Verified Brand
                 </span>
               </div>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-gray-100 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base text-gray-600 hover:bg-gray-50 transition-all">
+            <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-[#1F2937] rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base text-[#E5E7EB] hover:bg-[#1F2937] transition-all">
                 Save Brand
             </button>
-            <Button variant="primary" className="w-full sm:w-auto px-4 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base shadow-purple-200">
+            <Button variant="primary" className="w-full sm:w-auto px-4 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base shadow-blue-500/30">
                 Apply for Deal
             </Button>
           </div>
@@ -206,27 +205,27 @@ export default function BrandDetailsPage() {
             { label: 'Minimum Audience', value: selectedBrand.followers, desc: 'Verified Reach' },
             { label: 'Brand Health', value: 'Excellent', desc: 'Fast Payouts' }
           ].map((stat, i) => (
-            <div key={i} className="p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl lg:rounded-[2rem] border border-gray-100">
-              <p className="text-gray-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2">{stat.label}</p>
-              <p className="text-xl sm:text-2xl font-black text-gray-900 mb-1">{stat.value}</p>
-              <p className="text-[10px] sm:text-xs text-purple-600 font-bold italic">{stat.desc}</p>
+            <div key={i} className="p-4 sm:p-6 lg:p-8 bg-[#1F2937]/50 rounded-xl sm:rounded-2xl lg:rounded-[2rem] border border-[#374151]">
+              <p className="text-[#9CA3AF] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2">{stat.label}</p>
+              <p className="text-xl sm:text-2xl font-black text-[#E5E7EB] mb-1">{stat.value}</p>
+              <p className="text-[10px] sm:text-xs text-[#3B82F6] font-bold italic">{stat.desc}</p>
             </div>
           ))}
         </div>
 
         <div className="max-w-3xl">
-          <h3 className="text-lg sm:text-xl font-black text-gray-900 mb-3 sm:mb-4 tracking-tight">Collaboration Focus</h3>
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
-            {selectedBrand.name} is looking for creative storytellers in the <span className="text-purple-600 font-bold">{selectedBrand.category}</span> space. 
+          <h3 className="text-lg sm:text-xl font-black text-[#E5E7EB] mb-3 sm:mb-4 tracking-tight">Collaboration Focus</h3>
+          <p className="text-[#9CA3AF] text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
+            {selectedBrand.name} is looking for creative storytellers in the <span className="text-[#3B82F6] font-bold">{selectedBrand.category}</span> space. 
             We prioritize high-engagement creators who can authentically integrate our mission into their daily lifestyle. 
             Applicants should have a strong track record of audience trust and content quality.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <button className="flex items-center gap-2 text-sm font-bold text-purple-600 hover:underline">
+            <button className="flex items-center gap-2 text-sm font-bold text-[#3B82F6] hover:text-[#60A5FA] transition-colors">
                Visit Website <ExternalLink size={14} className="w-3.5 h-3.5" />
             </button>
-            <button className="flex items-center gap-2 text-sm font-bold text-purple-600 hover:underline">
+            <button className="flex items-center gap-2 text-sm font-bold text-[#3B82F6] hover:text-[#60A5FA] transition-colors">
                View Instagram <Instagram size={14} className="w-3.5 h-3.5" />
             </button>
           </div>

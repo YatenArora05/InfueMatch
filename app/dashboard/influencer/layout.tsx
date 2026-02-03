@@ -9,25 +9,25 @@ export default function InfluencerLayout({ children }: { children: React.ReactNo
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-[#F8F9FD]">
+    <div className="flex min-h-screen bg-[#020617]">
       {/* Sidebar - Fixed width on desktop, mobile menu on mobile */}
       <Sidebar isMobileOpen={isMobileMenuOpen} onMobileClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col md:ml-64">
-        {/* Mobile Menu Button - fixed on mobile */}
+        {/* Mobile Menu Button - fixed on mobile, black/blue theme */}
         <div className="md:hidden fixed top-4 left-4 z-50">
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-3 bg-white rounded-xl shadow-lg border border-gray-100 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+            className="p-3 bg-[#1F2937] rounded-xl shadow-lg border border-[#374151] text-[#E5E7EB] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-colors"
             aria-label="Open menu"
           >
             <Menu size={24} />
           </button>
         </div>
 
-        {/* Scrollable Dashboard View */}
-        <main className="p-4 md:p-8 overflow-y-auto w-full">
+        {/* Dashboard View (single page scroll via document, no inner scroll) */}
+        <main className="p-4 md:p-8 w-full">
           {children}
         </main>
       </div>

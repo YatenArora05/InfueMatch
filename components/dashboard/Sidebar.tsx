@@ -32,13 +32,13 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-64 bg-white border-r border-gray-100 flex-col fixed h-full z-40">
+      {/* Desktop Sidebar - black / blue / white theme */}
+      <aside className="hidden md:flex w-64 bg-[#0F0F0F] border-r border-[#1F2937] flex-col fixed h-full z-40">
         <div className="p-8 flex items-center gap-3">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30">
             <Rocket className="text-white" size={18} />
           </div>
-          <span className="text-xl font-bold text-gray-900 tracking-tight">InflueMatch</span>
+          <span className="text-xl font-bold text-[#E5E7EB] tracking-tight">InflueMatch</span>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
@@ -50,8 +50,8 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-200' 
-                  : 'text-gray-500 hover:bg-purple-50 hover:text-purple-600'
+                  ? 'bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white shadow-lg shadow-blue-500/30' 
+                  : 'text-[#9CA3AF] hover:bg-[#1F2937] hover:text-[#E5E7EB]'
                 }`}
               >
                 <item.icon size={20} />
@@ -61,10 +61,10 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
           })}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-gray-50">
+        <div className="p-4 mt-auto border-t border-[#1F2937]">
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-gray-500 hover:text-red-600 transition-colors cursor-pointer"
+            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
           >
             <LogOut size={20} />
             <span className="font-semibold text-sm">Logout</span>
@@ -75,25 +75,25 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
       {/* Mobile Sidebar Overlay */}
       {isMobileOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 z-50 transition-opacity"
+          className="md:hidden fixed inset-0 bg-black/60 z-50 transition-opacity backdrop-blur-sm"
           onClick={onMobileClose}
         />
       )}
 
-      {/* Mobile Sidebar Menu */}
-      <aside className={`md:hidden fixed top-0 right-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out ${
+      {/* Mobile Sidebar Menu - same black/blue/white theme */}
+      <aside className={`md:hidden fixed top-0 right-0 h-full w-80 bg-[#0F0F0F] border-l border-[#1F2937] z-50 transform transition-transform duration-300 ease-in-out ${
         isMobileOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="p-6 flex items-center justify-between border-b border-gray-100">
+        <div className="p-6 flex items-center justify-between border-b border-[#1F2937]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30">
               <Rocket className="text-white" size={18} />
             </div>
-            <span className="text-xl font-bold text-gray-900 tracking-tight">InflueMatch</span>
+            <span className="text-xl font-bold text-[#E5E7EB] tracking-tight">InflueMatch</span>
           </div>
           <button
             onClick={onMobileClose}
-            className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#1F2937] rounded-lg transition-colors"
           >
             <X size={24} />
           </button>
@@ -109,8 +109,8 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
                 onClick={handleLinkClick}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-200' 
-                  : 'text-gray-500 hover:bg-purple-50 hover:text-purple-600'
+                  ? 'bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white shadow-lg shadow-blue-500/30' 
+                  : 'text-[#9CA3AF] hover:bg-[#1F2937] hover:text-[#E5E7EB]'
                 }`}
               >
                 <item.icon size={20} />
@@ -120,10 +120,10 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
           })}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-gray-50">
+        <div className="p-4 mt-auto border-t border-[#1F2937]">
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-gray-500 hover:text-red-600 transition-colors cursor-pointer"
+            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
           >
             <LogOut size={20} />
             <span className="font-semibold text-sm">Logout</span>

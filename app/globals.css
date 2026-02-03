@@ -100,6 +100,99 @@ select::placeholder {
   opacity: 1 !important;
 }
 
+/* Auth pages (login/signup): white input text for visibility on dark background */
+.auth-form-page input,
+.auth-form-page textarea,
+.auth-form-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Invalid state (e.g. invalid email) – keep text white, not red */
+.auth-form-page input:invalid,
+.auth-form-page input:user-invalid,
+.auth-form-page input:focus:invalid,
+.auth-form-page input:focus:user-invalid {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.auth-form-page input:-webkit-autofill,
+.auth-form-page input:-webkit-autofill:hover,
+.auth-form-page input:-webkit-autofill:focus,
+.auth-form-page input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.auth-form-page input[type="text"],
+.auth-form-page input[type="email"],
+.auth-form-page input[type="password"],
+.auth-form-page input[type="tel"],
+.auth-form-page input[type="number"],
+.auth-form-page input[type="date"],
+.auth-form-page input[type="url"],
+.auth-form-page input[type="search"],
+.auth-form-page textarea,
+.auth-form-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.auth-form-page input[type="text"]:invalid,
+.auth-form-page input[type="email"]:invalid,
+.auth-form-page input[type="password"]:invalid,
+.auth-form-page input[type="text"]:user-invalid,
+.auth-form-page input[type="email"]:user-invalid,
+.auth-form-page input[type="password"]:user-invalid {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.auth-form-page input[type="text"]:-webkit-autofill,
+.auth-form-page input[type="email"]:-webkit-autofill,
+.auth-form-page input[type="password"]:-webkit-autofill,
+.auth-form-page input[type="tel"]:-webkit-autofill,
+.auth-form-page input[type="number"]:-webkit-autofill,
+.auth-form-page input[type="date"]:-webkit-autofill,
+.auth-form-page input[type="url"]:-webkit-autofill,
+.auth-form-page input[type="search"]:-webkit-autofill,
+.auth-form-page textarea:-webkit-autofill,
+.auth-form-page select:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Influencer profile page: dark inputs with white text */
+.influencer-profile-page input,
+.influencer-profile-page textarea,
+.influencer-profile-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.influencer-profile-page input:-webkit-autofill,
+.influencer-profile-page input:-webkit-autofill:hover,
+.influencer-profile-page input:-webkit-autofill:focus,
+.influencer-profile-page input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.influencer-profile-page input[type="text"],
+.influencer-profile-page input[type="email"],
+.influencer-profile-page input[type="password"],
+.influencer-profile-page input[type="tel"],
+.influencer-profile-page input[type="number"],
+.influencer-profile-page input[type="date"],
+.influencer-profile-page input[type="url"],
+.influencer-profile-page input[type="search"],
+.influencer-profile-page textarea,
+.influencer-profile-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;

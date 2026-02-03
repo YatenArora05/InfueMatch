@@ -110,11 +110,12 @@ export default function LoginForm() {
         <div className="relative group">
           <input
             type="email"
-            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm placeholder:text-[#6B7280] ${
               errors.email
                 ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500'
                 : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
             }`}
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
             placeholder="name@company.com"
             value={formData.email}
             onChange={(e) => handleChange('email', e.target.value)}
@@ -130,11 +131,12 @@ export default function LoginForm() {
         <div className="relative group">
           <input
             type="password"
-            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm text-[#E5E7EB] placeholder:text-[#6B7280] ${
+            className={`w-full pl-10 pr-4 py-2.5 bg-[#0B1120] border rounded-xl focus:ring-2 focus:bg-[#111827] transition-all outline-none text-sm placeholder:text-[#6B7280] ${
               errors.password
                 ? 'border-red-500/50 focus:ring-red-500 focus:border-red-500'
                 : 'border-[#1F2937] focus:ring-[#3B82F6] focus:border-[#3B82F6]/50'
             }`}
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
             placeholder="••••••••"
             value={formData.password}
             onChange={(e) => handleChange('password', e.target.value)}

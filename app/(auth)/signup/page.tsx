@@ -145,7 +145,7 @@ function SignupLoading() {
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Neon Grid Background - enhanced visibility */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div

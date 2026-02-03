@@ -4,18 +4,18 @@ import { CalendarDays } from 'lucide-react';
 
 export default function PostBookingsPage() {
   return (
-    <div className="max-w-5xl mx-auto w-full h-[calc(100vh-4rem)] flex flex-col">
+    <div className="influencer-profile-page max-w-5xl mx-auto w-full h-[calc(100vh-4rem)] flex flex-col">
       <div className="flex items-center gap-4 mb-6">
-        <div className="p-3 bg-purple-600 text-white rounded-2xl shadow-lg shadow-purple-100">
+        <div className="p-3 bg-[#3B82F6] text-white rounded-2xl shadow-lg shadow-blue-500/30">
           <CalendarDays size={24} />
         </div>
         <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight">Post Future Bookings</h1>
-          <p className="text-base text-gray-500 font-medium">Keep track of your upcoming collaborations and deadlines.</p>
+          <h1 className="text-3xl font-black text-[#E5E7EB] tracking-tight">Post Future Bookings</h1>
+          <p className="text-base text-[#9CA3AF] font-medium">Keep track of your upcoming collaborations and deadlines.</p>
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-2xl shadow-purple-50 flex-1 flex flex-col">
+      <div className="bg-[#0B1220]/90 backdrop-blur-sm p-6 rounded-3xl border border-[#1F2937] shadow-xl shadow-blue-900/10 flex-1 flex flex-col">
         <BookingForm />
       </div>
       

@@ -115,8 +115,8 @@ export default function BookingForm() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500 font-medium">Checking profile status...</p>
+          <div className="w-16 h-16 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-[#9CA3AF] font-medium">Checking profile status...</p>
         </div>
       </div>
     );
@@ -126,17 +126,17 @@ export default function BookingForm() {
   if (!isProfileComplete) {
     return (
       <div className="flex-1 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white border-2 border-red-100 rounded-2xl p-8 text-center shadow-lg">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-red-50 text-red-600 rounded-full mb-6">
+        <div className="max-w-md w-full bg-[#020617] border border-red-500/30 rounded-2xl p-8 text-center shadow-xl shadow-red-900/30">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-red-900/20 text-red-400 rounded-full mb-6">
             <AlertCircle size={32} />
           </div>
-          <h2 className="text-2xl font-black text-gray-900 mb-3">Profile Setup Required</h2>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            You have to first set up your profile to post your future upcoming bookings for any of the brand collaboration.
+          <h2 className="text-2xl font-black text-[#E5E7EB] mb-3">Profile Setup Required</h2>
+          <p className="text-[#9CA3AF] mb-6 leading-relaxed">
+            You need to complete your influencer profile before posting future bookings for brand collaborations.
           </p>
           <Button
             onClick={() => router.push('/dashboard/influencer')}
-            className="w-full py-3.5 text-lg shadow-xl shadow-purple-100 flex items-center justify-center gap-2"
+            className="w-full py-3.5 text-lg flex items-center justify-center gap-2"
           >
             <User size={20} /> Go to Profile Setup
           </Button>
@@ -150,13 +150,13 @@ export default function BookingForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Campaign/Post Name */}
         <div className="space-y-2">
-          <label className="text-base font-bold text-gray-700 ml-1 flex items-center gap-2">
-            <Type size={18} className="text-purple-600" /> Campaign Name
+          <label className="text-base font-bold text-[#E5E7EB] ml-1 flex items-center gap-2">
+            <Type size={18} className="text-[#3B82F6]" /> Campaign Name
           </label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="e.g. Summer Collection Launch"
-            className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all text-base"
+            className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all text-base placeholder:text-[#6B7280]"
             required
             name="campaignName"
           />
@@ -164,13 +164,13 @@ export default function BookingForm() {
 
         {/* Brand / Event Name */}
         <div className="space-y-2">
-          <label className="text-base font-bold text-gray-700 ml-1 flex items-center gap-2">
-            <Camera size={18} className="text-purple-600" /> Event / Brand Name
+          <label className="text-base font-bold text-[#E5E7EB] ml-1 flex items-center gap-2">
+            <Camera size={18} className="text-[#3B82F6]" /> Event / Brand Name
           </label>
           <input
             type="text"
             placeholder="e.g. Nike Summer Launch Event"
-            className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all text-base"
+            className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all text-base placeholder:text-[#6B7280]"
             required
             name="eventName"
           />
@@ -178,12 +178,12 @@ export default function BookingForm() {
 
         {/* Event/Post Date */}
         <div className="space-y-2">
-          <label className="text-base font-bold text-gray-700 ml-1 flex items-center gap-2">
-            <Calendar size={18} className="text-purple-600" /> Posting Date
+          <label className="text-base font-bold text-[#E5E7EB] ml-1 flex items-center gap-2">
+            <Calendar size={18} className="text-[#3B82F6]" /> Posting Date
           </label>
-          <input 
-            type="date" 
-            className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all text-base"
+          <input
+            type="date"
+            className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all text-base"
             required
             name="postingDate"
           />
@@ -191,13 +191,13 @@ export default function BookingForm() {
 
         {/* Agreed Rate */}
         <div className="space-y-2">
-          <label className="text-base font-bold text-gray-700 ml-1 flex items-center gap-2">
-            <DollarSign size={18} className="text-purple-600" /> Agreed Rate ($)
+          <label className="text-base font-bold text-[#E5E7EB] ml-1 flex items-center gap-2">
+            <DollarSign size={18} className="text-[#3B82F6]" /> Agreed Rate ($)
           </label>
-          <input 
-            type="number" 
+          <input
+            type="number"
             placeholder="0.00"
-            className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all text-base"
+            className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all text-base placeholder:text-[#6B7280]"
             name="agreedRate"
           />
         </div>
@@ -205,24 +205,24 @@ export default function BookingForm() {
 
       {/* Campaign Requirements / Notes */}
       <div className="space-y-2">
-        <label className="text-base font-bold text-gray-700 ml-1">Collaboration Details & Notes</label>
-        <textarea 
+        <label className="text-base font-bold text-[#E5E7EB] ml-1">Collaboration Details &amp; Notes</label>
+        <textarea
           rows={4}
           placeholder="Describe the content type (Reel, Story, Post) and specific hashtags or requirements..."
-          className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all resize-none text-base"
+          className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all resize-none text-base placeholder:text-[#6B7280]"
           name="notes"
         ></textarea>
       </div>
 
       {/* Dynamic Link Field */}
       <div className="space-y-2">
-        <label className="text-base font-bold text-gray-700 ml-1 flex items-center gap-2">
-          <LinkIcon size={18} className="text-purple-600" /> Campaign Asset Link (Optional)
+        <label className="text-base font-bold text-[#E5E7EB] ml-1 flex items-center gap-2">
+          <LinkIcon size={18} className="text-[#3B82F6]" /> Campaign Asset Link (Optional)
         </label>
-        <input 
-          type="url" 
+        <input
+          type="url"
           placeholder="https://drive.google.com/..."
-          className="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all text-base"
+          className="w-full px-5 py-3 bg-[#020617] border border-[#1F2937] rounded-2xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]/60 outline-none transition-all text-base placeholder:text-[#6B7280]"
           name="assetLink"
         />
       </div>
@@ -231,8 +231,8 @@ export default function BookingForm() {
         <div
           className={`mt-2 p-3 rounded-xl text-sm font-semibold text-center ${
             message.type === 'success'
-              ? 'bg-green-50 text-green-700 border border-green-200'
-              : 'bg-red-50 text-red-700 border border-red-200'
+              ? 'bg-emerald-900/20 text-emerald-300 border border-emerald-500/40'
+              : 'bg-red-900/20 text-red-300 border border-red-500/40'
           }`}
         >
           {message.text}
@@ -240,9 +240,9 @@ export default function BookingForm() {
       )}
 
       <div className="pt-2 mt-auto">
-        <Button 
-          type="submit" 
-          className="w-full py-3.5 text-lg shadow-xl shadow-purple-100 flex gap-2"
+        <Button
+          type="submit"
+          className="w-full py-3.5 text-lg flex gap-2"
           disabled={loading}
         >
           {loading ? "Saving..." : "Confirm Booking"} <Send size={20} />

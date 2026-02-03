@@ -121,8 +121,8 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 md:w-14 md:h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 ${
           isOpen 
-            ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white rotate-90' 
-            : 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-purple-500/50'
+            ? 'bg-[#020617] border border-[#1F2937] text-[#E5E7EB] rotate-90 shadow-blue-900/40' 
+            : 'bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white hover:shadow-blue-500/50'
         }`}
         aria-label="Open chatbot"
       >
@@ -144,9 +144,9 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-4 md:right-6 z-50 w-[calc(100vw-2rem)] md:w-96 h-[600px] max-h-[calc(100vh-8rem)] bg-white rounded-2xl shadow-2xl border border-purple-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+        <div className="chatbot-panel fixed bottom-24 right-4 md:right-6 z-50 w-[calc(100vw-2rem)] md:w-96 h-[600px] max-h-[calc(100vh-8rem)] bg-[#020617] rounded-2xl shadow-2xl shadow-blue-900/40 border border-[#1F2937] flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-4 md:px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-[#1E3A8A] via-[#1D4ED8] to-[#3B82F6] px-4 md:px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm flex-shrink-0">
                 <Bot size={20} className="text-white" />
@@ -166,7 +166,7 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-3 md:p-4 bg-gradient-to-b from-gray-50 to-white">
+          <div className="flex-1 overflow-y-auto p-3 md:p-4 bg-[#020617]">
             <div className="space-y-3 md:space-y-4">
               {messages.map((message) => (
                 <div
@@ -176,8 +176,8 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
                   <div
                     className={`max-w-[85%] md:max-w-[75%] rounded-2xl px-3 md:px-4 py-2 shadow-sm ${
                       message.sender === 'user'
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-tr-none'
-                        : 'bg-white text-gray-800 border border-gray-200 rounded-tl-none'
+                        ? 'bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white rounded-tr-none'
+                        : 'bg-[#111827] text-[#E5E7EB] border border-[#1F2937] rounded-tl-none'
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
@@ -185,7 +185,7 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
                     </p>
                     <p
                       className={`text-xs mt-1 ${
-                        message.sender === 'user' ? 'text-white/70' : 'text-gray-500'
+                        message.sender === 'user' ? 'text-white/70' : 'text-[#9CA3AF]'
                       }`}
                     >
                       {formatTime(message.timestamp)}
@@ -195,11 +195,11 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-[85%] md:max-w-[75%] rounded-2xl px-3 md:px-4 py-2 shadow-sm bg-white text-gray-800 border border-gray-200 rounded-tl-none">
+                  <div className="max-w-[85%] md:max-w-[75%] rounded-2xl px-3 md:px-4 py-2 shadow-sm bg-[#111827] text-[#E5E7EB] border border-[#1F2937] rounded-tl-none">
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <div className="w-2 h-2 bg-[#9CA3AF] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <div className="w-2 h-2 bg-[#9CA3AF] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <div className="w-2 h-2 bg-[#9CA3AF] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
                   </div>
                 </div>
@@ -209,19 +209,20 @@ export default function ChatBot({ userType = 'influencer' }: ChatBotProps) {
           </div>
 
           {/* Input Area */}
-          <form onSubmit={handleSendMessage} className="border-t border-gray-200 p-3 md:p-4 bg-white">
+          <form onSubmit={handleSendMessage} className="border-t border-[#1F2937] p-3 md:p-4 bg-[#020617]">
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-3 md:px-4 py-2 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm text-gray-900"
+                className="flex-1 px-3 md:px-4 py-2 md:py-3 rounded-xl border border-[#1F2937] bg-[#020617] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-sm placeholder:text-[#6B7280]"
+                style={{ color: '#E5E7EB', WebkitTextFillColor: '#E5E7EB' }}
               />
               <button
                 type="submit"
                 disabled={!inputMessage.trim() || isLoading}
-                className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
+                className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
                 aria-label="Send message"
               >
                 {isLoading ? (
