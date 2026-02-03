@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Rocket, Briefcase, Users } from 'lucide-react';
+import Navbar from '@/components/layout/Navbar';
 import SignupForm from '@/components/auth/SignupForm';
 
 // Component that uses useSearchParams - must be wrapped in Suspense
@@ -145,7 +146,8 @@ function SignupLoading() {
 
 export default function SignupPage() {
   return (
-    <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center pt-24 pb-4 sm:pb-6 lg:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <Navbar />
       {/* Neon Grid Background - enhanced visibility */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
@@ -190,9 +192,9 @@ export default function SignupPage() {
           <SignupContent />
         </Suspense>
         
-        <p className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-[#6B7280] px-4">
+        {/* <p className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-[#6B7280] px-4">
           By joining, you agree to our Terms of Service and Privacy Policy.
-        </p>
+        </p> */}
       </div>
     </div>
   );

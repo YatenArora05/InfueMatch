@@ -9,11 +9,8 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="py-20 bg-[#050816] relative overflow-hidden"
+      className="py-20 bg-transparent relative overflow-hidden"
     >
-      {/* Smooth transition from UserToggle */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0A0A0F] via-[#080810] to-[#050816] z-0" />
-      
       {/* Background Decoration */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#1E3A8A]/40 rounded-full blur-[120px] opacity-60 -translate-x-1/2 -translate-y-1/2 z-[1]" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#3B82F6]/30 rounded-full blur-[120px] opacity-60 translate-x-1/2 translate-y-1/2 z-[1]" />

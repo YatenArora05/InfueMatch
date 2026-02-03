@@ -3,11 +3,13 @@ import React from 'react';
 import { signIn } from 'next-auth/react';
 import { Rocket } from 'lucide-react';
 import Link from 'next/link';
+import Navbar from '@/components/layout/Navbar';
 import LoginForm from '@/components/auth/loginForm';
 
 export default function LoginPage() {
   return (
-    <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center py-4 px-6 lg:px-8 relative overflow-hidden">
+    <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center pt-24 pb-4 px-6 lg:px-8 relative overflow-hidden">
+      <Navbar />
       {/* Neon Grid Background - duller resolution */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div

@@ -67,7 +67,7 @@ const pricingPlans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-20 bg-[#020617] relative overflow-hidden">
+    <section id="pricing" className="py-20 bg-transparent relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-[#1E3A8A]/40 to-[#0F172A]/60 rounded-full blur-[150px] opacity-60" />
       

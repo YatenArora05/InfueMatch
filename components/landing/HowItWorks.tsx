@@ -31,7 +31,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-20 bg-[#020617] relative overflow-hidden"
+      className="py-20 bg-transparent relative overflow-hidden"
     >
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#1E3A8A]/30 rounded-full blur-[120px] opacity-60 -translate-y-1/2 translate-x-1/2" />

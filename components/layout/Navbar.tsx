@@ -10,14 +10,17 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Handle scroll effect for glassmorphism
+  // Scroll: single .navbar--scrolled class drives height, padding, logo, Login visibility, background
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 24);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrolled = isScrolled;
 
   // Smooth scroll handler for anchor links
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -48,30 +51,57 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled 
-      ? 'top-4 px-4' 
-      : 'top-0 px-0'
-    }`}>
-      <div className={`mx-auto max-w-7xl transition-all duration-300 ${
-        isScrolled 
-        ? 'bg-[#020617]/80 backdrop-blur-md shadow-lg rounded-2xl border border-[#1F2937] py-3' 
-        : 'bg-transparent py-6'
-      }`}>
-        <div className="container mx-auto px-6 flex items-center justify-between">
+    <nav
+      className={`fixed w-full z-50 transition-[padding,top] duration-300 ease-in-out ${
+        scrolled ? 'navbar--scrolled top-3 px-4' : 'top-0 px-0'
+      }`}
+      data-scrolled={scrolled ? 'true' : undefined}
+    >
+      <div
+        className={`mx-auto transition-[background-color,border-color,border-radius,max-width,padding,box-shadow] duration-300 ease-in-out ${
+          scrolled
+            ? 'max-w-5xl rounded-2xl border border-[#1F2937] bg-[#020617]/85 shadow-lg backdrop-blur-md py-3'
+            : 'max-w-7xl rounded-none border-transparent bg-transparent py-7'
+        }`}
+      >
+        <div
+          className={`mx-auto flex items-center justify-between transition-[padding] duration-300 ease-in-out ${
+            scrolled ? 'px-5' : 'px-6'
+          }`}
+        >
           
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-              <Rocket className="text-white navbar-logo-icon" size={20} />
+          {/* Logo — scales down when scrolled */}
+          <Link
+            href="/"
+            className={`flex items-center gap-2 group transition-all duration-300 ease-in-out ${
+              scrolled ? 'gap-1.5' : 'gap-2'
+            }`}
+          >
+            <div
+              className={`bg-[#3B82F6] rounded-xl flex items-center justify-center group-hover:rotate-12 transition-all duration-300 ease-in-out ${
+                scrolled ? 'w-8 h-8' : 'w-11 h-11'
+              }`}
+            >
+              <Rocket
+                className="text-white navbar-logo-icon"
+                size={scrolled ? 18 : 22}
+              />
             </div>
-            <span className="text-xl font-bold tracking-tight text-[#E5E7EB]">
+            <span
+              className={`font-bold tracking-tight text-[#E5E7EB] transition-all duration-300 ease-in-out ${
+                scrolled ? 'text-lg' : 'text-xl'
+              }`}
+            >
               Influe<span className="text-[#3B82F6]">Match</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation — spacing tightens when scrolled */}
+          <div
+            className={`hidden md:flex items-center transition-[gap] duration-300 ease-in-out ${
+              scrolled ? 'gap-5' : 'gap-8'
+            }`}
+          >
             <Link 
               href="#features" 
               onClick={(e) => handleAnchorClick(e, '#features')}
@@ -98,13 +128,28 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Auth Buttons */}
-          
-          <div className="hidden md:flex items-center gap-4">
-            <Link href="/login" className="text-sm font-semibold text-[#E5E7EB] hover:text-[#3B82F6] transition-colors cursor-pointer">
-              Login
-            </Link>
-            <Link href="/signup" className="px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-xl hover:bg-[#1D4ED8] hover:shadow-md transition-all active:scale-95 cursor-pointer">
+          {/* Auth: Login fades + slides upward on scroll (opacity + transform only); Register re-centers naturally */}
+          <div className="hidden md:flex items-center justify-end gap-4 min-w-0">
+            <div
+              className={`overflow-hidden transition-[max-width,opacity] duration-300 ease-in-out ${
+                scrolled ? 'max-w-0 opacity-0' : 'max-w-18 opacity-100'
+              }`}
+            >
+              <Link
+                href="/login"
+                className={`inline-block text-sm font-semibold text-[#E5E7EB] hover:text-[#3B82F6] cursor-pointer whitespace-nowrap transition-[opacity,transform] duration-300 ease-in-out ${
+                  scrolled
+                    ? 'translate-y-[-6px] opacity-0 pointer-events-none select-none'
+                    : 'translate-y-0 opacity-100'
+                }`}
+              >
+                Login
+              </Link>
+            </div>
+            <Link
+              href="/signup"
+              className="px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-xl hover:bg-[#1D4ED8] hover:shadow-md transition-[color,background-color,box-shadow,transform] duration-300 ease-in-out active:scale-[0.98] cursor-pointer shrink-0"
+            >
               Get Started
             </Link>
           </div>
