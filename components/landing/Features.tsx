@@ -12,8 +12,8 @@ export default function Features() {
       className="py-20 bg-transparent relative overflow-hidden"
     >
       {/* Background Decoration */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#1E3A8A]/40 rounded-full blur-[120px] opacity-60 -translate-x-1/2 -translate-y-1/2 z-[1]" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#3B82F6]/30 rounded-full blur-[120px] opacity-60 translate-x-1/2 translate-y-1/2 z-[1]" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-black rounded-full blur-[120px] opacity-60 -translate-x-1/2 -translate-y-1/2 z-[1]" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full blur-[120px] opacity-60 translate-x-1/2 translate-y-1/2 z-[1]" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">

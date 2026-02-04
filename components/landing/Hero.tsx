@@ -23,7 +23,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-transparent pt-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden landing-grid-bg pt-20">
       {/* Background Gradient Blobs - Interactive */}
       <div 
         className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-[500px] h-[500px] bg-[#1D4ED8]/40 rounded-full blur-[140px] opacity-70 transition-transform duration-300 z-[1]"

@@ -7,9 +7,11 @@ import { useSearchParams } from 'next/navigation';
 import { Rocket, Briefcase, Users } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import SignupForm from '@/components/auth/SignupForm';
+import { useRouter  } from 'next/navigation';
 
 // Component that uses useSearchParams - must be wrapped in Suspense
 function SignupContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const roleParam = searchParams.get('role');
   const initialRole = (roleParam === 'brand' || roleParam === 'influencer') ? roleParam : 'brand';
@@ -18,7 +20,7 @@ function SignupContent() {
 
   return (
     <>
-      <div className="bg-[#020617]/90 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-[#1F2937] shadow-2xl shadow-blue-900/20 w-full max-w-7xl mx-auto relative overflow-hidden">
+      <div className="bg-[#020617]/90 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-[#1F2937] shadow-2xl shadow-blue-900/20 w-full max-w-7xl mx-auto relative overflow-hidden mt-[-60px]">
         {/* Decorative Image - Bottom Left Corner Only (hidden on small screens) */}
         <div className="hidden md:block absolute bottom-0 left-8 w-full h-[70%] pointer-events-none z-0 opacity-25 sm:opacity-30 md:opacity-35">
           <Image
@@ -37,7 +39,7 @@ function SignupContent() {
           <div className="space-y-4 sm:space-y-6 text-left">
             <div className="mb-2">
               <div className="inline-flex items-center justify-center w-10 h-10 bg-[#3B82F6] rounded-xl shadow-xl shadow-blue-900/40 mb-3">
-                <Rocket className="text-white" size={20} />
+                <button onClick={() => router.push('/')}><Rocket className="text-white cursor-pointer" size={20} /></button> 
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#E5E7EB] tracking-tight">Join the Network</h2>
               <p className="mt-1 text-xs sm:text-sm text-[#9CA3AF] font-medium">
@@ -127,7 +129,7 @@ function SignupLoading() {
     <>
       <div className="text-center mb-4">
         <div className="inline-flex items-center justify-center w-10 h-10 bg-[#3B82F6] rounded-xl shadow-xl shadow-blue-900/40 mb-3">
-          <Rocket className="text-white" size={20} />
+         <Rocket className="text-white" size={20} />
         </div>
         <h2 className="text-3xl font-extrabold text-[#E5E7EB] tracking-tight">Join the Network</h2>
         <p className="mt-1 text-sm text-[#9CA3AF] font-medium">Choose your path and start collaborating.</p>
@@ -147,7 +149,7 @@ function SignupLoading() {
 export default function SignupPage() {
   return (
     <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center pt-24 pb-4 sm:pb-6 lg:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <Navbar />
+      {/* <Navbar /> */}
       {/* Neon Grid Background - enhanced visibility */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div

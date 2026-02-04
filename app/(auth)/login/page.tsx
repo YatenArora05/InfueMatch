@@ -5,11 +5,14 @@ import { Rocket } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import LoginForm from '@/components/auth/loginForm';
+import { useRouter  } from 'next/navigation';
+
 
 export default function LoginPage() {
+  const router = useRouter();
   return (
     <div className="auth-form-page min-h-screen bg-[#020617] text-[#E5E7EB] flex flex-col justify-center pt-24 pb-4 px-6 lg:px-8 relative overflow-hidden">
-      <Navbar />
+      {/* <Navbar /> */}
       {/* Neon Grid Background - duller resolution */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
@@ -52,7 +55,7 @@ export default function LoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
         <div className="flex justify-center mb-3">
           <div className="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/40">
-            <Rocket className="text-white" size={20} />
+            <button onClick={() => router.push('/')}><Rocket className="text-white cursor-pointer" size={20} /></button>
           </div>
         </div>
         <h2 className="text-3xl font-extrabold text-[#E5E7EB] tracking-tight">Welcome Back</h2>

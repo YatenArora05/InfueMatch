@@ -8,10 +8,10 @@ export default function UserToggle() {
   const [activeTab, setActiveTab] = useState<'brand' | 'influencer'>('brand');
 
   return (
-    <section className="py-16 flex flex-col items-center relative overflow-hidden bg-transparent">
+    <section className="py-16 flex flex-col items-center relative overflow-hidden bg-black">
       {/* Background Decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#1E3A8A]/30 rounded-full blur-[140px] opacity-70 z-[1]" />
-      <div className="absolute -bottom-24 right-0 w-[520px] h-[520px] bg-[#3B82F6]/20 rounded-full blur-[140px] opacity-70 z-[1]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-black rounded-full blur-[140px] opacity-70 z-[1]" />
+      <div className="absolute -bottom-24 right-0 w-[520px] h-[520px] bg-black rounded-full blur-[140px] opacity-70 z-[1]" />
       
       <div className="relative z-10 w-full max-w-5xl px-6">
         <div className="bg-[#020617] p-1 rounded-2xl flex gap-1 mb-12 border border-[#1F2937] max-w-md mx-auto shadow-sm">
@@ -47,7 +47,7 @@ export default function UserToggle() {
                 ? "Scale your brand with data-backed creators" 
                 : "Turn your audience into a business"}
             </h3>
-            <p className="text-[#9CA3AF] max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed">
+            <p className="text-[#9CA3AF] max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed ">
               {activeTab === 'brand' 
                 ? "Access a database of 50k+ influencers with detailed engagement metrics and verified conversion data." 
                 : "Connect with premium brands, manage your contracts, and get paid instantly for your content."}
