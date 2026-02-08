@@ -118,12 +118,12 @@ export default function InfluencerProfilePage() {
           />
         </div>
 
-        <div className="max-w-2xl text-center w-full relative z-10">
+        <div className=" text-center w-full relative z-10">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-4 md:mb-6 text-[#E5E7EB]">
-            <span className="inline-flex items-baseline justify-center gap-2 max-w-full whitespace-nowrap">
+            <span className="inline-flex items-baseline justify-center gap-2  whitespace-nowrap">
               <span className="text-inherit">Welcome,</span>
               <span
-                className="bg-gradient-to-r from-[#F9FAFB] via-[#E5E7EB] to-[#3B82F6] bg-clip-text text-transparent truncate max-w-[50vw] sm:max-w-[60vw]"
+                className="bg-gradient-to-r from-[#F9FAFB] via-[#E5E7EB] to-[#3B82F6] bg-clip-text text-transparent truncate "
                 title={isLoadingUser ? '...' : userName || 'User'}
               >
                 {isLoadingUser ? '...' : userName || 'User'}

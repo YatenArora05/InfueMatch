@@ -9,17 +9,17 @@ export default function BrandLayout({ children }: { children: React.ReactNode })
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-[#F8F9FD]">
+    <div className="flex min-h-screen bg-[#020617] text-[#E5E7EB]">
       {/* Sidebar - Fixed width on desktop, mobile menu on mobile */}
       <BrandSidebar isMobileOpen={isMobileMenuOpen} onMobileClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col md:ml-64">
+      <div className="flex-1 flex flex-col md:ml-64 relative z-10">
         {/* Mobile Menu Button */}
         <div className="md:hidden fixed top-4 right-4 z-40">
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-3 bg-white rounded-xl shadow-lg border border-gray-100 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+            className="p-3 bg-[#0B1120] rounded-xl border border-[#1F2937] text-[#E5E7EB] hover:bg-[#3B82F6] hover:text-white transition-colors shadow-lg shadow-blue-900/20"
           >
             <Menu size={24} />
           </button>

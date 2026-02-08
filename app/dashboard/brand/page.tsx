@@ -88,38 +88,39 @@ export default function BrandDashboard() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-white via-purple-50/30 to-purple-100/50 overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-200/20 rounded-full blur-[120px] -translate-y-1/4 translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-100/30 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4" />
-      
+    <div className="relative min-h-screen w-full bg-[#020617] text-[#E5E7EB] overflow-hidden">
+      {/* Grid Background */}
+    
+      <div className="absolute top-[-120px] right-[-80px] w-[420px] h-[420px] bg-[#1E3A8A]/30 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-[-160px] left-[-40px] w-[480px] h-[480px] bg-[#3B82F6]/25 rounded-full blur-[140px] -z-10" />
+
       <main className="relative z-10 w-full h-full overflow-y-auto">
         {/* Header */}
         <header className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 md:mb-10 gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-2">Brand Dashboard</h1>
-            <p className="text-gray-600 text-xs md:text-sm font-medium">Welcome back! Here's your overview</p>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#E5E7EB] mb-2">Brand Dashboard</h1>
+            <p className="text-[#9CA3AF] text-xs md:text-sm font-medium">Welcome back! Here's your overview</p>
           </div>
           
           <div className="flex items-center gap-3 md:gap-6">
             <div className="relative hidden lg:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7280]" size={18} />
               <input 
                 type="text" 
                 placeholder="Search analytics..." 
-                className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 w-64 text-gray-900 placeholder:text-gray-400 text-sm"
+                className="bg-[#0B1120] border border-[#1F2937] rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] w-64 text-[#E5E7EB] placeholder-[#6B7280] text-sm"
               />
             </div>
-            <button className="p-2 md:p-2.5 bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl hover:bg-white transition-colors shadow-sm">
-              <Bell size={20} className="text-purple-600" />
+            <button className="p-2 md:p-2.5 bg-[#0B1120] border border-[#1F2937] rounded-xl hover:bg-[#3B82F6] transition-colors shadow-lg shadow-blue-900/10">
+              <Bell size={20} className="text-[#3B82F6]" />
             </button>
-            <div className="flex items-center gap-2 md:gap-3 md:border-l md:border-purple-100 md:pl-6">
+            <div className="flex items-center gap-2 md:gap-3 md:border-l md:border-[#1F2937] md:pl-6">
               <div className="text-right hidden sm:block">
-                <p className="text-xs md:text-sm font-bold text-gray-900">Brand Manager</p>
-                <p className="text-[10px] md:text-xs text-gray-500">Admin</p>
+                <p className="text-xs md:text-sm font-bold text-[#E5E7EB]">Brand Manager</p>
+                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Admin</p>
               </div>
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-purple-500 to-purple-600 p-0.5">
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#3B82F6] p-0.5 border-2 border-[#1F2937]">
+                <div className="w-full h-full rounded-full bg-[#020617] flex items-center justify-center overflow-hidden">
                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Brand" alt="profile" />
                 </div>
               </div>
@@ -131,23 +132,23 @@ export default function BrandDashboard() {
         {loading ? (
           <div className="flex items-center justify-center py-12 md:py-20">
             <div className="text-center">
-              <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-500 font-medium text-sm md:text-base">Checking profile status...</p>
+              <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[#9CA3AF] font-medium text-sm md:text-base">Checking profile status...</p>
             </div>
           </div>
         ) : !isProfileComplete ? (
           <div className="flex items-center justify-center min-h-[60vh] px-4">
-            <div className="max-w-md w-full bg-white border-2 border-red-100 rounded-2xl p-6 md:p-8 text-center shadow-lg">
-              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-red-50 text-red-600 rounded-full mb-4 md:mb-6">
+            <div className="max-w-md w-full bg-[#020617]/90 backdrop-blur-xl border border-[#1F2937] rounded-2xl p-6 md:p-8 text-center shadow-xl shadow-blue-900/10">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-red-500/20 text-red-400 rounded-full mb-4 md:mb-6 border border-red-500/30">
                 <AlertCircle size={32} className="w-6 h-6 md:w-8 md:h-8" />
               </div>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">Profile Setup Required</h2>
-              <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
+              <h2 className="text-xl md:text-2xl font-black text-[#E5E7EB] mb-3">Profile Setup Required</h2>
+              <p className="text-sm md:text-base text-[#9CA3AF] mb-6 leading-relaxed">
                 You have to first set up your profile to access the dashboard and connect with top-tier influencers.
               </p>
               <Button
                 onClick={() => router.push('/dashboard/brand/profile')}
-                className="w-full py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-purple-100 flex items-center justify-center gap-2"
+                className="w-full py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-blue-900/30 flex items-center justify-center gap-2"
               >
                 <User size={20} className="w-5 h-5 md:w-5 md:h-5" /> Go to Profile Setup
               </Button>
@@ -157,14 +158,14 @@ export default function BrandDashboard() {
           <>
             {/* Analytics Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-              <StatCard title="Total Campaigns" value={totalCampaigns || "0"} trend="+12%" color="purple" />
-              <StatCard title="Active Influencers" value={activeInfluencers || "0"} trend="+5%" color="purple" />
-              <StatCard title="Total Reach" value={totalReach || "0"} trend="+18%" color="purple" />
-              <StatCard title="Total Spend" value={totalSpend || "$0"} trend="-2%" color="purple" />
+              <StatCard title="Total Campaigns" value={totalCampaigns || "0"} trend="+12%" theme="dark" />
+              <StatCard title="Active Influencers" value={activeInfluencers || "0"} trend="+5%" theme="dark" />
+              <StatCard title="Total Reach" value={totalReach || "0"} trend="+18%" theme="dark" />
+              <StatCard title="Total Spend" value={totalSpend || "$0"} trend="-2%" theme="dark" />
             </div>
 
             {/* Charts Section */}
-            <AnalyticsCharts socialMediaData={socialMediaData} />
+            <AnalyticsCharts socialMediaData={socialMediaData} theme="dark" />
           </>
         )}
       </main>

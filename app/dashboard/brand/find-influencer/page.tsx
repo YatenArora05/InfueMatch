@@ -63,36 +63,48 @@ export default function FindInfluencer() {
   });
 
   return (
-    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
+    <div className="brand-find-influencer-page space-y-8 animate-in slide-in-from-bottom-4 duration-500">
+      <style dangerouslySetInnerHTML={{ __html: `
+        #brand-find-influencer-search,
+        #brand-find-influencer-search:-webkit-autofill,
+        #brand-find-influencer-search:-webkit-autofill:hover,
+        #brand-find-influencer-search:-webkit-autofill:focus,
+        #brand-find-influencer-search:-webkit-autofill:active {
+          color: #ffffff !important;
+          -webkit-text-fill-color: #ffffff !important;
+        }
+      `}} />
       <div className="flex flex-col md:flex-row justify-between gap-4">
         <div className="relative flex-1 max-w-lg mt-5 ml-5">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B7280]" size={18} />
           <input 
+            id="brand-find-influencer-search"
             type="text" 
             placeholder="Search creators by niche or name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 bg-white border border-gray-100 rounded-2xl shadow-sm focus:ring-2 focus:ring-purple-600 outline-none"
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+            className="w-full pl-12 pr-4 py-4 bg-[#0B1120] border border-[#1F2937] rounded-2xl shadow-lg shadow-blue-900/10 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] outline-none text-white placeholder-[#9CA3AF]"
           />
         </div>
         <div className="relative mt-5 mr-5">
           <button 
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-6 py-4 bg-white border border-gray-100 rounded-2xl font-bold text-gray-600 hover:bg-purple-50 transition-all shadow-sm"
+            className="flex items-center gap-2 px-6 py-4 bg-[#0B1120] border border-[#1F2937] rounded-2xl font-bold text-[#E5E7EB] hover:bg-[#3B82F6] hover:text-white transition-all shadow-lg shadow-blue-900/10"
           >
             <Filter size={18} /> {showFilters ? 'Hide Filters' : 'More Filters'}
           </button>
 
           {/* Filter Panel */}
           {showFilters && (
-            <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-gray-100 rounded-2xl shadow-xl p-6 z-50">
+            <div className="absolute right-0 top-full mt-2 w-80 bg-[#020617]/95 backdrop-blur-xl border border-[#1F2937] rounded-2xl shadow-xl shadow-blue-900/20 p-6 z-50">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">Filter by Niche</h3>
+                <h3 className="text-lg font-bold text-[#E5E7EB]">Filter by Niche</h3>
                 <button 
                   onClick={() => setShowFilters(false)}
-                  className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-1 hover:bg-[#0B1120] rounded-lg transition-colors text-[#9CA3AF] hover:text-[#E5E7EB]"
                 >
-                  <X size={18} className="text-gray-500" />
+                  <X size={18} />
                 </button>
               </div>
               
@@ -101,8 +113,8 @@ export default function FindInfluencer() {
                   onClick={() => setSelectedNiche('')}
                   className={`w-full text-left px-4 py-2 rounded-xl font-medium transition-all ${
                     selectedNiche === ''
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-50 text-gray-700 hover:bg-purple-50'
+                      ? 'bg-[#3B82F6] text-white shadow-lg shadow-blue-900/30'
+                      : 'bg-[#0B1120] text-[#9CA3AF] hover:bg-[#1F2937] hover:text-[#E5E7EB] border border-[#1F2937]'
                   }`}
                 >
                   All Niches
@@ -113,8 +125,8 @@ export default function FindInfluencer() {
                     onClick={() => setSelectedNiche(niche)}
                     className={`w-full text-left px-4 py-2 rounded-xl font-medium transition-all ${
                       selectedNiche === niche
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-gray-50 text-gray-700 hover:bg-purple-50'
+                        ? 'bg-[#3B82F6] text-white shadow-lg shadow-blue-900/30'
+                        : 'bg-[#0B1120] text-[#9CA3AF] hover:bg-[#1F2937] hover:text-[#E5E7EB] border border-[#1F2937]'
                     }`}
                   >
                     {niche}
@@ -125,7 +137,7 @@ export default function FindInfluencer() {
               {selectedNiche && (
                 <button
                   onClick={() => setSelectedNiche('')}
-                  className="mt-4 w-full px-4 py-2 text-sm font-medium text-purple-600 hover:bg-purple-50 rounded-xl transition-colors"
+                  className="mt-4 w-full px-4 py-2 text-sm font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10 rounded-xl transition-colors border border-[#3B82F6]/30"
                 >
                   Clear Filter
                 </button>
@@ -138,12 +150,12 @@ export default function FindInfluencer() {
       {/* Active Filter Badge */}
       {selectedNiche && (
         <div className="flex items-center gap-2 ml-5">
-          <span className="text-sm text-gray-600 font-medium">Active Filter:</span>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-100 text-purple-700 rounded-lg font-bold text-sm">
+          <span className="text-sm text-[#9CA3AF] font-medium">Active Filter:</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#3B82F6]/20 text-[#60A5FA] border border-[#3B82F6]/30 rounded-lg font-bold text-sm">
             {selectedNiche}
             <button
               onClick={() => setSelectedNiche('')}
-              className="hover:bg-purple-200 rounded-full p-0.5 transition-colors"
+              className="hover:bg-[#3B82F6]/30 rounded-full p-0.5 transition-colors"
             >
               <X size={14} />
             </button>
@@ -154,14 +166,14 @@ export default function FindInfluencer() {
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-500 font-medium">Loading influencers...</p>
+            <div className="w-16 h-16 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-[#9CA3AF] font-medium">Loading influencers...</p>
           </div>
         </div>
       ) : filteredInfluencers.length === 0 ? (
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <p className="text-gray-500 font-medium text-lg">
+            <p className="text-[#9CA3AF] font-medium text-lg">
               {searchQuery || selectedNiche 
                 ? 'No influencers found matching your search or filter criteria.' 
                 : 'No influencers available at the moment.'}
@@ -172,7 +184,7 @@ export default function FindInfluencer() {
                   setSearchQuery('');
                   setSelectedNiche('');
                 }}
-                className="mt-4 px-4 py-2 text-sm font-medium text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                className="mt-4 px-4 py-2 text-sm font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10 rounded-lg transition-colors border border-[#3B82F6]/30"
               >
                 Clear all filters
               </button>

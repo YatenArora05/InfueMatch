@@ -205,6 +205,63 @@ select::placeholder {
   -webkit-text-fill-color: #ffffff !important;
 }
 
+/* Brand profile page: dark inputs with white text */
+.brand-profile-page input,
+.brand-profile-page textarea,
+.brand-profile-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.brand-profile-page input:-webkit-autofill,
+.brand-profile-page input:-webkit-autofill:hover,
+.brand-profile-page input:-webkit-autofill:focus,
+.brand-profile-page input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.brand-profile-page input[type="text"],
+.brand-profile-page input[type="email"],
+.brand-profile-page input[type="password"],
+.brand-profile-page input[type="tel"],
+.brand-profile-page input[type="number"],
+.brand-profile-page input[type="date"],
+.brand-profile-page input[type="url"],
+.brand-profile-page input[type="search"],
+.brand-profile-page textarea,
+.brand-profile-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Brand find-influencer page: dark inputs with white text */
+.brand-find-influencer-page input,
+.brand-find-influencer-page textarea,
+.brand-find-influencer-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.brand-find-influencer-page input:-webkit-autofill,
+.brand-find-influencer-page input:-webkit-autofill:hover,
+.brand-find-influencer-page input:-webkit-autofill:focus,
+.brand-find-influencer-page input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.brand-find-influencer-page input[type="text"],
+.brand-find-influencer-page input[type="email"],
+.brand-find-influencer-page input[type="password"],
+.brand-find-influencer-page input[type="tel"],
+.brand-find-influencer-page input[type="search"],
+.brand-find-influencer-page textarea,
+.brand-find-influencer-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -216,4 +273,21 @@ select::placeholder {
 
 .animate-shimmer {
   animation: shimmer 2s linear infinite;
+}
+
+/* LAST: Force white input text on brand find-influencer page (beats any global/Tailwind override) */
+.brand-find-influencer-page input,
+.brand-find-influencer-page input[type="text"],
+.brand-find-influencer-page input[type="search"],
+.brand-find-influencer-page textarea,
+.brand-find-influencer-page select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.brand-find-influencer-page input:-webkit-autofill,
+.brand-find-influencer-page input:-webkit-autofill:hover,
+.brand-find-influencer-page input:-webkit-autofill:focus,
+.brand-find-influencer-page input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
 }

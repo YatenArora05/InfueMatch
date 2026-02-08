@@ -148,29 +148,29 @@ export default function InfluencerProfileModal({
   const location = [city, state, zip].filter(Boolean).join(", ") || "Not specified";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative bg-[#020617] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden border border-[#1F2937] shadow-2xl shadow-blue-900/30 animate-in slide-in-from-bottom-4 duration-300">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+          className="absolute top-4 right-4 z-10 p-2 bg-[#0B1120] rounded-full border border-[#1F2937] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-colors text-[#9CA3AF] hover:text-white"
         >
-          <X size={24} className="text-gray-600" />
+          <X size={24} />
         </button>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
-              <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-500 font-medium">Loading profile...</p>
+              <div className="w-16 h-16 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[#9CA3AF] font-medium">Loading profile...</p>
             </div>
           </div>
         ) : influencer ? (
           <div className="overflow-y-auto max-h-[90vh]">
             {/* Header Section */}
-            <div className="relative bg-linear-to-br from-purple-600 to-purple-800 p-8 pt-12">
+            <div className="relative bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] p-8 pt-12">
               <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden border-4 border-white shadow-xl">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden border-4 border-white/30 shadow-xl">
                   <img
                     src={avatarUrl}
                     alt={fullName}
@@ -184,7 +184,7 @@ export default function InfluencerProfileModal({
                       {niche.map((n: string, idx: number) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-bold"
+                          className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-bold border border-white/20"
                         >
                           {n}
                         </span>
@@ -214,53 +214,53 @@ export default function InfluencerProfileModal({
             <div className="p-6 md:p-8 space-y-6">
               {/* Bio Section */}
               {bio && (
-                <div className="bg-purple-50 rounded-2xl p-6">
+                <div className="bg-[#0B1120] rounded-2xl p-6 border border-[#1F2937]">
                   <div className="flex items-center gap-2 mb-3">
-                    <MessageSquare size={20} className="text-purple-600" />
-                    <h3 className="text-lg font-bold text-gray-900">About</h3>
+                    <MessageSquare size={20} className="text-[#3B82F6]" />
+                    <h3 className="text-lg font-bold text-[#E5E7EB]">About</h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">{bio}</p>
+                  <p className="text-[#9CA3AF] leading-relaxed">{bio}</p>
                 </div>
               )}
 
               {/* Contact Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {email && (
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                    <Mail size={20} className="text-purple-600" />
+                  <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
+                    <Mail size={20} className="text-[#3B82F6]" />
                     <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email</p>
-                      <p className="text-gray-900 font-semibold">{email}</p>
+                      <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Email</p>
+                      <p className="text-[#E5E7EB] font-semibold">{email}</p>
                     </div>
                   </div>
                 )}
 
                 {phone && (
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                    <Phone size={20} className="text-purple-600" />
+                  <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
+                    <Phone size={20} className="text-[#3B82F6]" />
                     <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Phone</p>
-                      <p className="text-gray-900 font-semibold">{phone}</p>
+                      <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Phone</p>
+                      <p className="text-[#E5E7EB] font-semibold">{phone}</p>
                     </div>
                   </div>
                 )}
 
                 {location && location !== "Not specified" && (
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                    <MapPin size={20} className="text-purple-600" />
+                  <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
+                    <MapPin size={20} className="text-[#3B82F6]" />
                     <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Location</p>
-                      <p className="text-gray-900 font-semibold">{location}</p>
+                      <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Location</p>
+                      <p className="text-[#E5E7EB] font-semibold">{location}</p>
                     </div>
                   </div>
                 )}
 
                 {dob && (
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                    <Calendar size={20} className="text-purple-600" />
+                  <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
+                    <Calendar size={20} className="text-[#3B82F6]" />
                     <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Date of Birth</p>
-                      <p className="text-gray-900 font-semibold">{new Date(dob).toLocaleDateString()}</p>
+                      <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Date of Birth</p>
+                      <p className="text-[#E5E7EB] font-semibold">{new Date(dob).toLocaleDateString()}</p>
                     </div>
                   </div>
                 )}
@@ -269,55 +269,55 @@ export default function InfluencerProfileModal({
               {/* Social Media Section */}
               {(instagram.username || youtube.channel || facebook.username || twitter.username) && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Social Media</h3>
+                  <h3 className="text-lg font-bold text-[#E5E7EB] mb-4">Social Media</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {instagram.username && (
-                      <div className="flex items-center gap-3 p-4 bg-pink-50 rounded-xl border border-pink-100">
+                      <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
                         <Instagram size={24} className="text-pink-500" />
                         <div className="flex-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Instagram</p>
-                          <p className="text-gray-900 font-semibold">@{instagram.username}</p>
+                          <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Instagram</p>
+                          <p className="text-[#E5E7EB] font-semibold">@{instagram.username}</p>
                           {instagram.followers && (
-                            <p className="text-sm text-gray-600">{instagram.followers} followers</p>
+                            <p className="text-sm text-[#9CA3AF]">{instagram.followers} followers</p>
                           )}
                         </div>
                       </div>
                     )}
 
                     {youtube.channel && (
-                      <div className="flex items-center gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
+                      <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
                         <Youtube size={24} className="text-red-500" />
                         <div className="flex-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">YouTube</p>
-                          <p className="text-gray-900 font-semibold">{youtube.channel}</p>
+                          <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">YouTube</p>
+                          <p className="text-[#E5E7EB] font-semibold">{youtube.channel}</p>
                           {youtube.subscribers && (
-                            <p className="text-sm text-gray-600">{youtube.subscribers} subscribers</p>
+                            <p className="text-sm text-[#9CA3AF]">{youtube.subscribers} subscribers</p>
                           )}
                         </div>
                       </div>
                     )}
 
                     {facebook.username && (
-                      <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                        <Facebook size={24} className="text-blue-600" />
+                      <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
+                        <Facebook size={24} className="text-blue-500" />
                         <div className="flex-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Facebook</p>
-                          <p className="text-gray-900 font-semibold">{facebook.username}</p>
+                          <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Facebook</p>
+                          <p className="text-[#E5E7EB] font-semibold">{facebook.username}</p>
                           {facebook.followers && (
-                            <p className="text-sm text-gray-600">{facebook.followers} followers</p>
+                            <p className="text-sm text-[#9CA3AF]">{facebook.followers} followers</p>
                           )}
                         </div>
                       </div>
                     )}
 
                     {twitter.username && (
-                      <div className="flex items-center gap-3 p-4 bg-sky-50 rounded-xl border border-sky-100">
+                      <div className="flex items-center gap-3 p-4 bg-[#0B1120] rounded-xl border border-[#1F2937]">
                         <Twitter size={24} className="text-sky-400" />
                         <div className="flex-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Twitter</p>
-                          <p className="text-gray-900 font-semibold">@{twitter.username}</p>
+                          <p className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Twitter</p>
+                          <p className="text-[#E5E7EB] font-semibold">@{twitter.username}</p>
                           {twitter.followers && (
-                            <p className="text-sm text-gray-600">{twitter.followers} followers</p>
+                            <p className="text-sm text-[#9CA3AF]">{twitter.followers} followers</p>
                           )}
                         </div>
                       </div>
@@ -328,15 +328,15 @@ export default function InfluencerProfileModal({
             </div>
 
             {/* Footer with Contact Button */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-100 p-6">
+            <div className="sticky bottom-0 bg-[#020617] border-t border-[#1F2937] p-6">
               {(contactMessage || reportMessage) && (
                 <div className="mb-4 space-y-2">
                   {contactMessage && (
                     <div
                       className={`p-3 rounded-xl ${
                         contactMessage.type === 'success'
-                          ? 'bg-green-50 border border-green-200 text-green-700'
-                          : 'bg-red-50 border border-red-200 text-red-700'
+                          ? 'bg-green-500/10 border border-green-500/30 text-green-400'
+                          : 'bg-red-500/10 border border-red-500/30 text-red-400'
                       }`}
                     >
                       <p className="text-sm font-semibold text-center">{contactMessage.text}</p>
@@ -346,8 +346,8 @@ export default function InfluencerProfileModal({
                     <div
                       className={`p-3 rounded-xl ${
                         reportMessage.type === 'success'
-                          ? 'bg-yellow-50 border border-yellow-200 text-yellow-800'
-                          : 'bg-red-50 border border-red-200 text-red-700'
+                          ? 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                          : 'bg-red-500/10 border border-red-500/30 text-red-400'
                       }`}
                     >
                       <p className="text-sm font-semibold text-center">{reportMessage.text}</p>
@@ -359,14 +359,15 @@ export default function InfluencerProfileModal({
                 <Button
                   onClick={handleContactInfluencer}
                   disabled={isContacting || !email}
-                  className="w-full py-4 text-lg font-bold shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 text-lg font-bold shadow-xl shadow-blue-900/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isContacting ? "Sending..." : "Contact the Influencer"}
                 </Button>
                 <Button
                   onClick={handleReportInfluencer}
                   disabled={isReporting}
-                  className="w-full py-4 text-lg font-bold border border-red-200 text-red-700 bg-red-50 hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                  variant="secondary"
+                  className="w-full py-4 text-lg font-bold border border-red-500/30 text-red-400 bg-red-500/10 hover:bg-red-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isReporting ? "Reporting..." : "Report Influencer"}
                 </Button>
@@ -375,7 +376,7 @@ export default function InfluencerProfileModal({
           </div>
         ) : (
           <div className="flex items-center justify-center py-20">
-            <p className="text-gray-500 font-medium">Failed to load profile</p>
+            <p className="text-[#9CA3AF] font-medium">Failed to load profile</p>
           </div>
         )}
       </div>

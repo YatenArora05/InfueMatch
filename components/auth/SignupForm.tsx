@@ -270,7 +270,7 @@ export default function SignupForm({ role }: SignupFormProps) {
           {/* Google Sign Up */}
           <button 
             type="button"
-            onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+            onClick={() => signIn('google', { callbackUrl: '/dashboard', role: role })}
             className="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-[#1F2937] rounded-xl hover:bg-[#0B1120] transition-all active:scale-95 font-medium text-[#E5E7EB] text-sm bg-[#020617]"
           >
             <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />

@@ -119,19 +119,61 @@ export default function BrandProfilePage() {
       // Welcome State
   if (!isOnboarding && !isCompleted) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center animate-in fade-in zoom-in duration-500 px-4 md:px-6">
-        <div className="max-w-2xl text-center w-full">
-          <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-purple-100 text-purple-600 rounded-2xl sm:rounded-3xl mb-4 sm:mb-6 md:mb-8 animate-bounce">
-            <Sparkles size={32} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 tracking-tighter mb-3 sm:mb-4 md:mb-6">
-            Welcome, <span className="text-purple-600">{isLoadingUser ? '...' : brandName || 'Brand'}!</span>
+      <div className="relative min-h-[80vh] flex items-center justify-center px-4 overflow-hidden animate-in fade-in zoom-in duration-500 md:px-6">
+        {/* Subtle blue grid background - match influencer profile */}
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(59,130,246,0.28) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59,130,246,0.28) 1px, transparent 1px)
+              `,
+              backgroundSize: "50px 50px",
+              backgroundPosition: "0 0",
+            }}
+          />
+          <div
+            className="absolute inset-0 w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(59,130,246,0.10) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59,130,246,0.10) 1px, transparent 1px)
+              `,
+              backgroundSize: "50px 50px",
+              filter: "blur(0.5px)",
+              boxShadow: "inset 0 0 90px rgba(15,23,42,0.85)",
+            }}
+          />
+          <div
+            className="absolute inset-0 w-full h-full"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.85) 70%, rgba(2,6,23,1) 100%)",
+            }}
+          />
+        </div>
+
+        <div className="max-w-2xl text-center w-full relative z-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-4 md:mb-6 text-[#E5E7EB]">
+            <span className="inline-flex items-baseline justify-center gap-2 flex-wrap">
+              <span className="text-inherit">Welcome,</span>
+              <span
+                className="bg-gradient-to-r from-[#F9FAFB] via-[#E5E7EB] to-[#3B82F6] bg-clip-text text-transparent"
+                title={isLoadingUser ? '...' : brandName || 'Brand'}
+              >
+                {isLoadingUser ? '...' : brandName || 'Brand'}!
+              </span>
+            </span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 mb-6 md:mb-10 leading-relaxed px-2 sm:px-4">
+          <p className="text-base md:text-xl text-[#9CA3AF] mb-6 md:mb-10 leading-relaxed max-w-xl mx-auto px-2 sm:px-4">
             Let's set up your brand profile to connect with top-tier influencers and grow your reach.
           </p>
-          <Button onClick={() => setIsOnboarding(true)} className="px-5 py-3 sm:px-6 sm:py-4 md:px-10 md:py-5 text-base sm:text-lg md:text-xl group shadow-2xl shadow-purple-200">
-            Setup Brand Profile <ArrowRight size={20} className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
+          <Button
+            onClick={() => setIsOnboarding(true)}
+            className="group inline-flex items-center justify-center px-6 py-3.5 md:px-10 md:py-4 text-base md:text-lg font-semibold rounded-xl bg-[#3B82F6] text-white border border-[#2563EB] hover:bg-[#2563EB] hover:border-[#60A5FA] transition-colors shadow-xl shadow-blue-900/30"
+          >
+            Setup Brand Profile <ArrowRight size={20} className="w-5 h-5 ml-2 inline-block group-hover:translate-x-2 transition-transform" />
           </Button>
         </div>
       </div>
@@ -274,19 +316,27 @@ export default function BrandProfilePage() {
     }
   };
 
+  const inputClass = "w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-[#0B1120] border border-[#1F2937] rounded-lg md:rounded-xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] outline-none text-white placeholder-[#9CA3AF]";
+  const inputClassShort = "w-full px-4 py-3 text-sm md:text-base bg-[#0B1120] border border-[#1F2937] rounded-xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] outline-none text-white placeholder-[#9CA3AF]";
+  const labelClass = "block text-xs md:text-sm font-bold text-[#9CA3AF] mb-1.5 md:mb-2";
+  const labelClassShort = "block text-sm font-bold text-[#9CA3AF] mb-2";
+  const sectionTitleClass = "text-base md:text-lg font-black text-[#E5E7EB] flex items-center gap-2";
+  const iconClass = "w-[18px] h-[18px] md:w-5 md:h-5 text-[#3B82F6]";
+
   return (
-    <div className="max-w-5xl mx-auto w-full min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-4rem)] flex flex-col animate-in slide-in-from-bottom-8 duration-700">
+    <div className="brand-profile-page max-w-5xl mx-auto w-full min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-4rem)] flex flex-col animate-in slide-in-from-bottom-8 duration-700">
+     
       <div className="mb-4 md:mb-6 text-center shrink-0 px-2 md:px-4">
-        <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black text-gray-900 mb-1 md:mb-2">Complete Your Brand Profile</h2>
-        <p className="text-gray-500 font-medium tracking-wide uppercase text-[10px] md:text-xs">Step 1: Brand Identity & Information</p>
+        <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black text-[#E5E7EB] mb-1 md:mb-2">Complete Your Brand Profile</h2>
+        <p className="text-[#9CA3AF] font-medium tracking-wide uppercase text-[10px] md:text-xs">Step 1: Brand Identity & Information</p>
       </div>
 
-      <div className="bg-white rounded-xl md:rounded-2xl lg:rounded-[3rem] border border-gray-100 p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl shadow-purple-50 flex-1 overflow-y-auto mb-4 md:mb-0">
+      <div className="bg-[#020617]/90 backdrop-blur-xl rounded-xl md:rounded-2xl lg:rounded-[3rem] border border-[#1F2937] p-4 sm:p-6 md:p-8 lg:p-12 shadow-xl shadow-blue-900/10 flex-1 overflow-y-auto mb-4 md:mb-0">
         {saveMessage && (
           <div className={`mb-4 p-4 rounded-xl ${
             saveMessage.type === 'success' 
-              ? 'bg-green-50 border border-green-200 text-green-700' 
-              : 'bg-red-50 border border-red-200 text-red-700'
+              ? 'bg-green-500/10 border border-green-500/30 text-green-400' 
+              : 'bg-red-500/10 border border-red-500/30 text-red-400'
           }`}>
             {saveMessage.text}
           </div>
@@ -295,26 +345,26 @@ export default function BrandProfilePage() {
         <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
           {/* Company Information */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <Building2 size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Company Information
+            <h3 className={sectionTitleClass}>
+              <Building2 size={20} className={iconClass} /> Company Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               <div>
-                <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">Company/Brand Name *</label>
+                <label className={labelClass}>Company/Brand Name *</label>
                 <input
                   type="text"
                   name="companyName"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClass}
                   placeholder="e.g. Nike Inc."
                 />
               </div>
               <div>
-                <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">Industry *</label>
+                <label className={labelClass}>Industry *</label>
                 <select
                   name="industry"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClass}
                 >
                   <option value="">Select Industry</option>
                   <option value="Fashion">Fashion</option>
@@ -329,22 +379,22 @@ export default function BrandProfilePage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Website</label>
+                <label className={labelClassShort}>Website</label>
                 <input
                   type="url"
                   name="website"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="https://www.example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Email *</label>
+                <label className={labelClassShort}>Email *</label>
                 <input
                   type="email"
                   name="email"
                   required
                   defaultValue={userEmail}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                 />
               </div>
             </div>
@@ -352,52 +402,52 @@ export default function BrandProfilePage() {
 
           {/* Contact Information */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <Phone size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Contact Information
+            <h3 className={sectionTitleClass}>
+              <Phone size={20} className={iconClass} /> Contact Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               <div>
-                <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">Phone</label>
+                <label className={labelClass}>Phone</label>
                 <input
                   type="tel"
                   name="phone"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Address</label>
+                <label className={labelClassShort}>Address</label>
                 <input
                   type="text"
                   name="address"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="123 Main Street"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">City</label>
+                <label className={labelClassShort}>City</label>
                 <input
                   type="text"
                   name="city"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="New York"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">State</label>
+                <label className={labelClassShort}>State</label>
                 <input
                   type="text"
                   name="state"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="NY"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">ZIP Code</label>
+                <label className={labelClassShort}>ZIP Code</label>
                 <input
                   type="text"
                   name="zip"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="10001"
                 />
               </div>
@@ -406,16 +456,16 @@ export default function BrandProfilePage() {
 
           {/* Brand Description */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <MessageSquare size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Brand Description
+            <h3 className={sectionTitleClass}>
+              <MessageSquare size={20} className={iconClass} /> Brand Description
             </h3>
             <div>
-              <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">About Your Brand *</label>
+              <label className={labelClass}>About Your Brand *</label>
               <textarea
                 name="bio"
                 required
                 rows={4}
-                className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none resize-none"
+                className={inputClass + " resize-none"}
                 placeholder="Tell us about your brand, mission, and values..."
               />
             </div>
@@ -423,15 +473,15 @@ export default function BrandProfilePage() {
 
           {/* Marketing Information */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <DollarSign size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Marketing Information
+            <h3 className={sectionTitleClass}>
+              <DollarSign size={20} className={iconClass} /> Marketing Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Budget Range</label>
+                <label className={labelClassShort}>Budget Range</label>
                 <select
                   name="budgetRange"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                 >
                   <option value="">Select Budget Range</option>
                   <option value="$1k - $5k">$1k - $5k</option>
@@ -442,11 +492,11 @@ export default function BrandProfilePage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Target Audience</label>
+                <label className={labelClassShort}>Target Audience</label>
                 <input
                   type="text"
                   name="targetAudience"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="e.g. 18-35, Fashion Enthusiasts"
                 />
               </div>
@@ -455,43 +505,43 @@ export default function BrandProfilePage() {
 
           {/* Campaign Statistics */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <TrendingUp size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Campaign Statistics
+            <h3 className={sectionTitleClass}>
+              <TrendingUp size={20} className={iconClass} /> Campaign Statistics
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Total Campaigns</label>
+                <label className={labelClassShort}>Total Campaigns</label>
                 <input
                   type="text"
                   name="totalCampaigns"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="e.g. 12,567"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Active Influencers</label>
+                <label className={labelClassShort}>Active Influencers</label>
                 <input
                   type="text"
                   name="activeInfluencers"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="e.g. 2,475"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Total Reach</label>
+                <label className={labelClassShort}>Total Reach</label>
                 <input
                   type="text"
                   name="totalReach"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="e.g. 1.2M"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Total Spend</label>
+                <label className={labelClassShort}>Total Spend</label>
                 <input
                   type="text"
                   name="totalSpend"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                  className={inputClassShort}
                   placeholder="e.g. $150,000"
                 />
               </div>
@@ -500,31 +550,31 @@ export default function BrandProfilePage() {
 
           {/* Social Media */}
           <div className="space-y-3 md:space-y-4">
-            <h3 className="text-base md:text-lg font-black text-gray-900 flex items-center gap-2">
-              <Globe size={20} className="w-[18px] h-[18px] md:w-5 md:h-5 text-purple-600" /> Social Media Presence
+            <h3 className={sectionTitleClass}>
+              <Globe size={20} className={iconClass} /> Social Media Presence
             </h3>
             <div className="space-y-3 md:space-y-4">
               {/* Instagram */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#9CA3AF] mb-1.5 md:mb-2">
                     <Instagram size={16} className="w-3.5 h-3.5 md:w-4 md:h-4 text-pink-500" /> Instagram Username
                   </label>
                   <input
                     type="text"
                     name="instagramUsername"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="@yourbrand"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className={labelClass}>
                     Instagram Followers
                   </label>
                   <input
                     type="text"
                     name="instagramFollowers"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="e.g. 50K, 1.2M"
                   />
                 </div>
@@ -533,24 +583,24 @@ export default function BrandProfilePage() {
               {/* YouTube */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#9CA3AF] mb-1.5 md:mb-2">
                     <Youtube size={16} className="w-3.5 h-3.5 md:w-4 md:h-4 text-red-500" /> YouTube Channel
                   </label>
                   <input
                     type="text"
                     name="youtubeChannel"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="Channel Name"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className={labelClass}>
                     YouTube Subscribers
                   </label>
                   <input
                     type="text"
                     name="youtubeSubscribers"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="e.g. 100K, 2.5M"
                   />
                 </div>
@@ -559,24 +609,24 @@ export default function BrandProfilePage() {
               {/* Facebook */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#9CA3AF] mb-1.5 md:mb-2">
                     <Facebook size={16} className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-500" /> Facebook Page Name
                   </label>
                   <input
                     type="text"
                     name="facebookUsername"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="Page Name"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className={labelClass}>
                     Facebook Followers
                   </label>
                   <input
                     type="text"
                     name="facebookFollowers"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="e.g. 25K, 500K"
                   />
                 </div>
@@ -585,24 +635,24 @@ export default function BrandProfilePage() {
               {/* Twitter */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#9CA3AF] mb-1.5 md:mb-2">
                     <Twitter size={16} className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-400" /> Twitter Username
                   </label>
                   <input
                     type="text"
                     name="twitterUsername"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="@yourbrand"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs md:text-sm font-bold text-gray-700 mb-1.5 md:mb-2">
+                  <label className={labelClass}>
                     Twitter Followers
                   </label>
                   <input
                     type="text"
                     name="twitterFollowers"
-                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base bg-gray-50 border border-gray-100 rounded-lg md:rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none"
+                    className={inputClass}
                     placeholder="e.g. 30K, 750K"
                   />
                 </div>
@@ -616,7 +666,7 @@ export default function BrandProfilePage() {
               <Button
                 type="submit"
                 disabled={isSaving}
-                className="flex-1 py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-blue-900/30 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSaving ? 'Saving...' : 'Save Profile & Enter Dashboard'}
               </Button>
@@ -625,7 +675,7 @@ export default function BrandProfilePage() {
                 type="button"
                 onClick={handleUpdate}
                 disabled={isSaving}
-                className="flex-1 py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-purple-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 py-3 md:py-3.5 text-base md:text-lg shadow-xl shadow-blue-900/30 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSaving ? 'Updating...' : 'Update Profile'}
               </Button>
