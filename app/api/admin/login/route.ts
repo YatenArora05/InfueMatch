@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getExpectedAdminSessionId } from "@/lib/admin-session";
 
 // Temporary admin credentials
 const ADMIN_EMAIL = "adminInfluencemarket@gmail.com";
@@ -31,10 +32,10 @@ export async function POST(req: Request) {
     // Check against temporary credentials (case-insensitive email, exact password match)
     if (trimmedEmail === ADMIN_EMAIL.toLowerCase() && trimmedPassword === ADMIN_PASSWORD) {
       return NextResponse.json(
-        { 
+        {
           success: true,
           message: "Login successful",
-          adminId: "admin-temp-id"
+          adminId: getExpectedAdminSessionId(),
         },
         { status: 200 }
       );

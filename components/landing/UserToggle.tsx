@@ -53,11 +53,11 @@ export default function UserToggle() {
                 : "Connect with premium brands, manage your contracts, and get paid instantly for your content."}
             </p>
             <div className="flex justify-center gap-4">
-              <Link 
-                href={`/signup?role=${activeTab}`}
+              <Link
+                href="/signup"
                 className="group/btn inline-flex items-center gap-2 px-8 py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#1D4ED8] transition-all shadow-lg shadow-blue-900/40 hover:shadow-xl hover:scale-105 active:scale-95"
               >
-                Get Started as {activeTab === 'brand' ? 'Brand' : 'Influencer'}
+                Get started
                 <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
               </Link>
             </div>

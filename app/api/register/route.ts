@@ -2,10 +2,20 @@ import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { sendWelcomeEmail } from "@/lib/mailer";
+
+const REGISTER_ROLES = ["brand", "influencer"] as const;
 
 export async function POST(req: Request) {
   try {
     const { name, email, password, role } = await req.json();
+
+    if (!role || typeof role !== "string" || !REGISTER_ROLES.includes(role as "brand" | "influencer")) {
+      return NextResponse.json(
+        { message: "A valid role (brand or influencer) is required" },
+        { status: 400 }
+      );
+    }
     
     // Validate password
     if (!password || password.length < 8) {
@@ -35,7 +45,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "User already exists" }, { status: 400 });
     }
 
-    const user = await User.create({ name, email, password: hashedPassword, role });
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+      isFirstLogin: false,
+    });
+
+    void sendWelcomeEmail(user.email, user.name).catch((err) =>
+      console.error("[welcome-email] register:", err)
+    );
 
     // Return user data (without password)
     const userData = {

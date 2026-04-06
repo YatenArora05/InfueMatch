@@ -4,6 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
+import { scheduleFirstLoginWelcome } from "@/lib/welcome-email";
 
 const authOptions = {
   providers: [
@@ -45,6 +46,25 @@ const authOptions = {
       },
     }),
   ],
+  events: {
+    async signIn({ user }: { user: { id?: string; email?: string | null; _id?: unknown } }) {
+      try {
+        await connectMongoDB();
+        let dbUser = null as InstanceType<typeof User> | null;
+        if (user?.id) {
+          dbUser = await User.findById(user.id);
+        }
+        if (!dbUser && user?.email) {
+          dbUser = await User.findOne({ email: user.email });
+        }
+        if (dbUser?._id) {
+          scheduleFirstLoginWelcome(dbUser._id);
+        }
+      } catch (e) {
+        console.error("[welcome-email] nextauth signIn:", e);
+      }
+    },
+  },
   callbacks: {
     // This runs when the JWT is created/updated
     async jwt({ token, user }: any) {

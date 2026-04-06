@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Rocket, LogOut, LayoutDashboard, Users, User, X } from "lucide-react";
+import { Rocket, LogOut, LayoutDashboard, Users, User, X, Settings } from "lucide-react";
 
 const menuItems = [
   { name: 'Profile', icon: User, href: '/dashboard/brand/profile' },
@@ -60,13 +60,21 @@ export default function BrandSidebar({ isMobileOpen = false, onMobileClose }: Br
           })}
         </nav>
 
-        <div className="p-4 border-t border-[#1F2937]">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+        <div className="p-4 mt-auto border-t border-[#1F2937] flex gap-2">
+          <Link
+            href="/dashboard/brand/settings"
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-[#3B82F6] hover:bg-[#0B1120] rounded-xl transition-colors"
           >
-            <LogOut size={20} /> 
-            <span className="text-sm font-semibold">Logout</span>
+            <Settings size={20} className="shrink-0" />
+            <span className="text-sm font-semibold truncate">Settings</span>
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut size={20} className="shrink-0" />
+            <span className="text-sm font-semibold truncate">Logout</span>
           </button>
         </div>
       </aside>
@@ -80,7 +88,7 @@ export default function BrandSidebar({ isMobileOpen = false, onMobileClose }: Br
       )}
 
       {/* Mobile Sidebar Menu */}
-      <aside className={`md:hidden fixed top-0 right-0 h-full w-80 bg-[#0F0F0F] backdrop-blur-xl border-l border-[#1F2937] z-50 transform transition-transform duration-300 ease-in-out ${
+      <aside className={`md:hidden fixed top-0 right-0 h-full w-80 bg-[#0F0F0F] backdrop-blur-xl border-l border-[#1F2937] z-50 flex flex-col transform transition-transform duration-300 ease-in-out ${
         isMobileOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="p-6 flex items-center justify-between border-b border-[#1F2937]">
@@ -119,13 +127,22 @@ export default function BrandSidebar({ isMobileOpen = false, onMobileClose }: Br
           })}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-[#1F2937]">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+        <div className="p-4 mt-auto border-t border-[#1F2937] flex gap-2">
+          <Link
+            href="/dashboard/brand/settings"
+            onClick={handleLinkClick}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-[#3B82F6] hover:bg-[#0B1120] rounded-xl transition-colors"
           >
-            <LogOut size={20} />
-            <span className="text-sm font-semibold">Logout</span>
+            <Settings size={20} className="shrink-0" />
+            <span className="text-sm font-semibold truncate">Settings</span>
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut size={20} className="shrink-0" />
+            <span className="text-sm font-semibold truncate">Logout</span>
           </button>
         </div>
       </aside>

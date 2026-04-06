@@ -2,6 +2,7 @@ import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { scheduleFirstLoginWelcome } from "@/lib/welcome-email";
 
 export async function POST(req: Request) {
   try {
@@ -44,6 +45,8 @@ export async function POST(req: Request) {
         { status: 401 }
       );
     }
+
+    scheduleFirstLoginWelcome(user._id);
 
     // Return user data (without password)
     const userData = {

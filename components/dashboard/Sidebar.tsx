@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Briefcase, Calendar, ListTodo, User, LogOut, Rocket, X } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Calendar, ListTodo, User, LogOut, Rocket, X, Settings } from 'lucide-react';
 
 const menuItems = [
   { name: 'Dashboard', icon: LayoutDashboard, href: '/dashboard/influencer' },
@@ -61,13 +61,21 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
           })}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-[#1F2937]">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
+        <div className="p-4 mt-auto border-t border-[#1F2937] flex gap-2">
+          <Link
+            href="/dashboard/influencer/settings"
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-[#3B82F6] hover:bg-[#1F2937] rounded-xl transition-colors"
           >
-            <LogOut size={20} />
-            <span className="font-semibold text-sm">Logout</span>
+            <Settings size={20} className="shrink-0" />
+            <span className="font-semibold text-sm truncate">Settings</span>
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut size={20} className="shrink-0" />
+            <span className="font-semibold text-sm truncate">Logout</span>
           </button>
         </div>
       </aside>
@@ -120,13 +128,22 @@ export default function Sidebar({ isMobileOpen = false, onMobileClose }: Sidebar
           })}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-[#1F2937]">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
+        <div className="p-4 mt-auto border-t border-[#1F2937] flex gap-2">
+          <Link
+            href="/dashboard/influencer/settings"
+            onClick={handleLinkClick}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-[#3B82F6] hover:bg-[#1F2937] rounded-xl transition-colors"
           >
-            <LogOut size={20} />
-            <span className="font-semibold text-sm">Logout</span>
+            <Settings size={20} className="shrink-0" />
+            <span className="font-semibold text-sm truncate">Settings</span>
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex flex-1 min-w-0 items-center justify-center gap-2 px-3 py-3 text-[#9CA3AF] hover:text-red-400 hover:bg-[#1F2937] rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut size={20} className="shrink-0" />
+            <span className="font-semibold text-sm truncate">Logout</span>
           </button>
         </div>
       </aside>

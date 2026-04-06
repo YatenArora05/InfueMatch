@@ -10,6 +10,41 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+function getWelcomeTransporter() {
+  if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    return nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  }
+  return transporter;
+}
+
+/**
+ * Welcome email for new users. Uses EMAIL_USER / EMAIL_PASS (Gmail) when set, otherwise SMTP_* transport.
+ */
+export async function sendWelcomeEmail(email: string, name: string) {
+  const transport = getWelcomeTransporter();
+  const fromAddr =
+    process.env.EMAIL_USER ||
+    process.env.SMTP_FROM?.match(/<([^>]+)>/)?.[1] ||
+    process.env.SMTP_USER;
+  const from =
+    fromAddr != null && fromAddr !== ""
+      ? `"InflueMatch" <${fromAddr}>`
+      : '"InflueMatch" <no-reply@influematch.com>';
+
+  await transport.sendMail({
+    from,
+    to: email,
+    subject: "Welcome to InflueMatch 🚀",
+    html: getWelcomeEmailHtml(name),
+  });
+}
+
 export async function sendResetOtpEmail(to: string, otp: string) {
   const html = getResetOtpEmailHtml(otp);
 
@@ -36,6 +71,53 @@ export async function sendCollaborationEmail(
     subject: `${brandName} wants to collaborate with you on InflueMatch`,
     html,
   });
+}
+
+function getWelcomeEmailHtml(name: string) {
+  const displayName = name?.trim() || "there";
+  return `
+  <html>
+    <body style="margin:0;padding:0;background:#f0f4ff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 0;">
+        <tr>
+          <td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:20px;padding:36px 32px;box-shadow:0 12px 40px rgba(37,99,235,0.12);border:1px solid #e0e7ff;">
+              <tr>
+                <td style="font-size:22px;font-weight:800;color:#1e3a8a;padding-bottom:12px;">
+                  Welcome, ${displayName}! 🚀
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:15px;color:#374151;line-height:1.65;padding-bottom:16px;">
+                  Thank you for joining <strong style="color:#2563eb;">InflueMatch</strong>. We're excited to have you on the platform.
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:15px;color:#374151;line-height:1.65;padding-bottom:24px;">
+                  InflueMatch connects creators and brands so you can discover partnerships, manage collaborations, and grow together — all in one place.
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:14px;color:#6b7280;padding-bottom:8px;">
+                  If you have questions, just reply to this email or visit your dashboard to get started.
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:15px;font-weight:600;color:#1e40af;padding-top:16px;">
+                  — Team InflueMatch
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:11px;color:#9ca3af;border-top:1px solid #f3f4f6;padding-top:20px;margin-top:16px;">
+                  © ${new Date().getFullYear()} InflueMatch. All rights reserved.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>`;
 }
 
 function getResetOtpEmailHtml(otp: string) {

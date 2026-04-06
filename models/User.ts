@@ -14,6 +14,11 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    /** When true, next successful login may send the welcome email (signup sets false after account creation). */
+    isFirstLogin: {
+      type: Boolean,
+      default: true,
+    },
     reportCount: {
       type: Number,
       default: 0,

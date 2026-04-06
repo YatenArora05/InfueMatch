@@ -57,12 +57,12 @@ export default function Hero() {
         </p> */}
         {/* Main Section */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <Link href="/signup?role=brand" className="group relative px-7 py-3.5 bg-[#3B82F6] text-white rounded-xl font-bold text-base hover:bg-[#2563EB] transition-all shadow-xl shadow-blue-900/40 active:scale-95 overflow-hidden inline-block">
+          <Link href="/signup" className="group relative px-7 py-3.5 bg-[#3B82F6] text-white rounded-xl font-bold text-base hover:bg-[#2563EB] transition-all shadow-xl shadow-blue-900/40 active:scale-95 overflow-hidden inline-block">
             <span className="relative z-10">I am a Brand</span>
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           </Link>
-          
-          <Link href="/signup?role=influencer" className="px-7 py-3.5 bg-transparent text-[#E5E7EB] border border-[#374151] rounded-xl font-bold text-base hover:border-[#3B82F6] hover:text-[#3B82F6] transition-all active:scale-95 shadow-sm inline-block">
+
+          <Link href="/signup" className="px-7 py-3.5 bg-transparent text-[#E5E7EB] border border-[#374151] rounded-xl font-bold text-base hover:border-[#3B82F6] hover:text-[#3B82F6] transition-all active:scale-95 shadow-sm inline-block">
             I am an Influencer
           </Link>
         </div>
