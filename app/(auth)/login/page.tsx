@@ -77,7 +77,7 @@ export default function LoginPage() {
             className="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-[#1F2937] rounded-xl hover:bg-[#0B1120] transition-all active:scale-95 font-medium text-[#E5E7EB] text-sm bg-[#020617]"
           >
             <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />
-            Sign in with Google
+            Login with Google
           </button>
 
           <p className="mt-5 text-center text-sm text-[#9CA3AF]">

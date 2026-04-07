@@ -170,11 +170,11 @@ export default function InfluencerDashboard() {
         ) : (
           <>
             <div className="mb-6 md:mb-8 flex flex-col sm:flex-row sm:items-center gap-3">
-              <div className="flex items-center gap-2 text-[#9CA3AF]">
+              {/* <div className="flex items-center gap-2 text-[#9CA3AF]">
                 <Mail size={18} className="text-[#3B82F6]" />
                 <span className="text-sm font-semibold">Email:</span>
                 <span className="text-sm text-[#E5E7EB] truncate max-w-[240px] md:max-w-none">{email || '—'}</span>
-              </div>
+              </div> */}
               {niche.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {niche.map((n: string) => (

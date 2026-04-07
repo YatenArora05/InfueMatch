@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
+import { randomUUID } from "crypto";
+import mongoose from "mongoose";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import { scheduleFirstLoginWelcome } from "@/lib/welcome-email";
@@ -47,11 +49,15 @@ const authOptions = {
     }),
   ],
   events: {
-    async signIn({ user }: { user: { id?: string; email?: string | null; _id?: unknown } }) {
+    async signIn({
+      user,
+    }: {
+      user: { id?: string; email?: string | null; _id?: unknown };
+    }) {
       try {
         await connectMongoDB();
         let dbUser = null as InstanceType<typeof User> | null;
-        if (user?.id) {
+        if (user?.id && mongoose.Types.ObjectId.isValid(user.id)) {
           dbUser = await User.findById(user.id);
         }
         if (!dbUser && user?.email) {
@@ -66,19 +72,65 @@ const authOptions = {
     },
   },
   callbacks: {
-    // This runs when the JWT is created/updated
+    async signIn({ user, account }: any) {
+      try {
+        await connectMongoDB();
+
+        if (account?.provider !== "google") {
+          return true;
+        }
+
+        if (!user?.email) {
+          return false;
+        }
+
+        let existingUser = await User.findOne({ email: user.email });
+
+        if (!existingUser) {
+          // Store a random hash for OAuth accounts; password login still won't work without reset flow.
+          const oauthPasswordHash = await bcrypt.hash(
+            `oauth:${user.email}:${randomUUID()}`,
+            10
+          );
+          const fallbackName = String(user.name || user.email.split("@")[0]).trim();
+          existingUser = await User.create({
+            name: fallbackName || "User",
+            email: user.email,
+            role: "influencer",
+            password: oauthPasswordHash,
+            isFirstLogin: true,
+          });
+        }
+
+        if (existingUser.isBlocked) {
+          return false;
+        }
+
+        return true;
+      } catch (error) {
+        console.error("Google SignIn Error:", error);
+        return false;
+      }
+    },
+  
     async jwt({ token, user }: any) {
       if (user) {
-        token.role = user.role; // Store the role (brand/influencer) in the token
-        token.id = user._id;
+        await connectMongoDB();
+    
+        const dbUser = await User.findOne({ email: user.email });
+    
+        if (dbUser) {
+          token.id = dbUser._id;
+          token.role = dbUser.role;
+        }
       }
       return token;
     },
-    // This makes the role available in the frontend session
+  
     async session({ session, token }: any) {
       if (session.user) {
-        (session.user as any).role = token.role;
         (session.user as any).id = token.id;
+        (session.user as any).role = token.role;
       }
       return session;
     },
