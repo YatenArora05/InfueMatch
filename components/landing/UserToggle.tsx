@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Briefcase, Users, ArrowRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../ui/Button';
 
 export default function UserToggle() {
@@ -38,10 +39,14 @@ export default function UserToggle() {
         </div>
 
         <div className="w-full p-8 md:p-12 rounded-3xl bg-[#020617] border border-[#1F2937] shadow-xl text-center hover:shadow-2xl transition-all duration-300 group">
-          <div 
-            key={activeTab}
-            className="animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -14, filter: 'blur(4px)' }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-[#E5E7EB] leading-tight">
               {activeTab === 'brand' 
                 ? "Scale your brand with data-backed creators" 
@@ -56,12 +61,14 @@ export default function UserToggle() {
               <Link
                 href="/signup"
                 className="group/btn inline-flex items-center gap-2 px-8 py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#1D4ED8] transition-all shadow-lg shadow-blue-900/40 hover:shadow-xl hover:scale-105 active:scale-95"
-              >
+              > <center className="flex justify-center items-center">
                 Get started
                 <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                </center>
               </Link>
             </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

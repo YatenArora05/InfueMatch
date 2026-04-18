@@ -1,21 +1,26 @@
+/** Same palette as legacy avatar SVGs — deterministic per first letter. */
+export const AVATAR_BG_COLORS = [
+  "#8B5CF6", // purple
+  "#EC4899", // pink
+  "#EF4444", // red
+  "#F59E0B", // amber
+  "#10B981", // emerald
+  "#3B82F6", // blue
+  "#6366F1", // indigo
+] as const;
+
+export function getAvatarBackgroundColorFromName(name: string): string {
+  const firstLetter = (name || "U").trim().charAt(0).toUpperCase();
+  const colorIndex = firstLetter.charCodeAt(0) % AVATAR_BG_COLORS.length;
+  return AVATAR_BG_COLORS[colorIndex];
+}
+
 /**
  * Generate an SVG avatar with the first letter of the name
  */
 export function generateAvatarSvg(name: string, size: number = 200): string {
   const firstLetter = name.charAt(0).toUpperCase();
-  const colors = [
-    "#8B5CF6", // purple
-    "#EC4899", // pink
-    "#EF4444", // red
-    "#F59E0B", // amber
-    "#10B981", // emerald
-    "#3B82F6", // blue
-    "#6366F1", // indigo
-  ];
-  
-  // Use first letter to determine color (consistent for same name)
-  const colorIndex = firstLetter.charCodeAt(0) % colors.length;
-  const backgroundColor = colors[colorIndex];
+  const backgroundColor = getAvatarBackgroundColorFromName(name);
 
   return `
     <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Rocket } from 'lucide-react';
@@ -9,16 +9,52 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const landingSettleUntilRef = useRef(0);
 
   // Scroll: single .navbar--scrolled class drives height, padding, logo, Login visibility, background
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
+    if (pathname === '/') {
+      landingSettleUntilRef.current = Date.now() + 520;
+    } else {
+      landingSettleUntilRef.current = 0;
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    const applyScrollState = () => {
+      const y = window.scrollY;
+      if (pathname === '/' && Date.now() < landingSettleUntilRef.current && y < 96) {
+        setIsScrolled(false);
+        return;
+      }
+      setIsScrolled(y > 24);
     };
+
+    const handleScroll = () => {
+      applyScrollState();
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    const t = window.setTimeout(() => {
+      applyScrollState();
+    }, 0);
+
+    const t2 = window.setTimeout(() => {
+      applyScrollState();
+    }, 120);
+
+    const t3 = window.setTimeout(() => {
+      applyScrollState();
+    }, 560);
+
+    return () => {
+      window.clearTimeout(t);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [pathname]);
 
   const scrolled = isScrolled;
 

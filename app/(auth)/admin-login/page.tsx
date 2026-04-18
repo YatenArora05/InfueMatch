@@ -98,6 +98,117 @@ export default function AdminLoginPage() {
           -webkit-box-shadow: 0 0 0 1000px #0B1120 inset !important;
           box-shadow: 0 0 0 1000px #0B1120 inset !important;
         }
+
+        .grid-light-overlay {
+          --pulse-size: 140px;
+          --line-thickness: 2px;
+          --pulse-duration-x: 7.5s;
+          --pulse-duration-y: 9s;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          mix-blend-mode: screen;
+          opacity: 0.9;
+        }
+
+        .grid-light-overlay::before,
+        .grid-light-overlay::after {
+          content: "";
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(10px);
+          background: radial-gradient(circle, rgba(34, 211, 238, 0.95) 0%, rgba(59, 130, 246, 0.62) 45%, rgba(14, 165, 233, 0.25) 70%, rgba(14, 165, 233, 0) 100%);
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+        }
+
+        .grid-light-overlay::before {
+          width: var(--pulse-size);
+          height: var(--line-thickness);
+          left: calc(var(--pulse-size) * -1);
+          top: calc(22% - (var(--line-thickness) / 2));
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.65), 0 0 48px rgba(59, 130, 246, 0.35);
+          animation-name: travel-x, pulse-flicker;
+          animation-duration: var(--pulse-duration-x), 1.8s;
+          animation-delay: 0s, 0.1s;
+        }
+
+        .grid-light-overlay::after {
+          width: var(--line-thickness);
+          height: var(--pulse-size);
+          top: calc(var(--pulse-size) * -1);
+          left: calc(74% - (var(--line-thickness) / 2));
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.6), 0 0 48px rgba(56, 189, 248, 0.32);
+          animation-name: travel-y, pulse-flicker;
+          animation-duration: var(--pulse-duration-y), 2.3s;
+          animation-delay: 1.2s, 0.4s;
+        }
+
+        .grid-light-overlay .pulse-line-x,
+        .grid-light-overlay .pulse-line-y {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(9px);
+          background: linear-gradient(90deg, rgba(14, 165, 233, 0), rgba(34, 211, 238, 0.9), rgba(59, 130, 246, 0.3), rgba(14, 165, 233, 0));
+          opacity: 0.82;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        .grid-light-overlay .pulse-line-x {
+          width: 180px;
+          height: 1.5px;
+          left: -180px;
+          top: calc(68% - 1px);
+          animation-name: travel-x-delayed, pulse-flicker;
+          animation-duration: 10s, 2.6s;
+          animation-delay: 0.8s, 0s;
+        }
+
+        .grid-light-overlay .pulse-line-y {
+          width: 1.5px;
+          height: 180px;
+          top: -180px;
+          left: calc(30% - 1px);
+          animation-name: travel-y-delayed, pulse-flicker;
+          animation-duration: 11.5s, 2.1s;
+          animation-delay: 2.4s, 0.2s;
+        }
+
+        @keyframes travel-x {
+          0%, 12% { transform: translate3d(0, 0, 0); opacity: 0; }
+          20% { opacity: 1; }
+          82% { opacity: 1; }
+          100% { transform: translate3d(calc(100vw + var(--pulse-size)), 0, 0); opacity: 0; }
+        }
+
+        @keyframes travel-y {
+          0%, 10% { transform: translate3d(0, 0, 0); opacity: 0; }
+          18% { opacity: 1; }
+          85% { opacity: 1; }
+          100% { transform: translate3d(0, calc(100vh + var(--pulse-size)), 0); opacity: 0; }
+        }
+
+        @keyframes travel-x-delayed {
+          0%, 16% { transform: translate3d(0, 0, 0); opacity: 0; }
+          24% { opacity: 0.85; }
+          78% { opacity: 0.85; }
+          100% { transform: translate3d(calc(100vw + 180px), 0, 0); opacity: 0; }
+        }
+
+        @keyframes travel-y-delayed {
+          0%, 14% { transform: translate3d(0, 0, 0); opacity: 0; }
+          22% { opacity: 0.85; }
+          80% { opacity: 0.85; }
+          100% { transform: translate3d(0, calc(100vh + 180px), 0); opacity: 0; }
+        }
+
+        @keyframes pulse-flicker {
+          0%, 100% { filter: blur(8px); opacity: 0.75; }
+          45% { filter: blur(11px); opacity: 1; }
+          70% { filter: blur(9px); opacity: 0.82; }
+        }
       `}} />
       {/* Neon Grid Background */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -130,6 +241,10 @@ export default function AdminLoginPage() {
             background: "radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.8) 70%, rgba(2,6,23,1) 100%)",
           }}
         />
+        <div className="grid-light-overlay">
+          <span className="pulse-line-x" />
+          <span className="pulse-line-y" />
+        </div>
       </div>
 
       {/* Background Decorative Blobs */}

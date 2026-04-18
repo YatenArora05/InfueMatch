@@ -89,8 +89,157 @@ export default function BrandDashboard() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#020617] text-[#E5E7EB] overflow-hidden">
-      {/* Grid Background */}
-    
+      <style jsx>{`
+        .dashboard-grid-light {
+          --grid-size: 50px;
+          --pulse-thickness: 2px;
+          --pulse-len: 140px;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .dashboard-grid-light::before,
+        .dashboard-grid-light::after {
+          content: "";
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(8px);
+          opacity: 0;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-fill-mode: both;
+        }
+
+        .dashboard-grid-light::before {
+          width: var(--pulse-len);
+          height: var(--pulse-thickness);
+          left: calc(var(--pulse-len) * -1);
+          top: calc((var(--grid-size) * 4) - (var(--pulse-thickness) / 2));
+          background: linear-gradient(90deg, rgba(8, 47, 73, 0), rgba(14, 116, 144, 0.72), rgba(56, 189, 248, 0.45), rgba(8, 47, 73, 0));
+          box-shadow: 0 0 10px rgba(14, 116, 144, 0.5), 0 0 26px rgba(56, 189, 248, 0.2);
+          animation-name: dash-travel-x, dash-flicker;
+          animation-duration: 8.6s, 2.1s;
+          animation-delay: 0s, 0.1s;
+        }
+
+        .dashboard-grid-light::after {
+          width: var(--pulse-thickness);
+          height: var(--pulse-len);
+          top: calc(var(--pulse-len) * -1);
+          left: calc((var(--grid-size) * 10) - (var(--pulse-thickness) / 2));
+          background: linear-gradient(180deg, rgba(8, 47, 73, 0), rgba(14, 116, 144, 0.72), rgba(56, 189, 248, 0.45), rgba(8, 47, 73, 0));
+          box-shadow: 0 0 10px rgba(14, 116, 144, 0.5), 0 0 26px rgba(56, 189, 248, 0.2);
+          animation-name: dash-travel-y, dash-flicker;
+          animation-duration: 10.2s, 2.5s;
+          animation-delay: 1.4s, 0.25s;
+        }
+
+        .dashboard-grid-light .dash-line-x,
+        .dashboard-grid-light .dash-line-y {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(7px);
+          opacity: 0;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        .dashboard-grid-light .dash-line-x {
+          width: 160px;
+          height: 1.5px;
+          left: -160px;
+          top: calc((var(--grid-size) * 9) - 1px);
+          background: linear-gradient(90deg, rgba(8, 47, 73, 0), rgba(14, 116, 144, 0.64), rgba(56, 189, 248, 0.36), rgba(8, 47, 73, 0));
+          animation-name: dash-travel-x-2, dash-flicker;
+          animation-duration: 11.5s, 2.8s;
+          animation-delay: 0.9s, 0.2s;
+        }
+
+        .dashboard-grid-light .dash-line-y {
+          width: 1.5px;
+          height: 160px;
+          top: -160px;
+          left: calc((var(--grid-size) * 6) - 1px);
+          background: linear-gradient(180deg, rgba(8, 47, 73, 0), rgba(14, 116, 144, 0.64), rgba(56, 189, 248, 0.36), rgba(8, 47, 73, 0));
+          animation-name: dash-travel-y-2, dash-flicker;
+          animation-duration: 12.8s, 2.3s;
+          animation-delay: 2s, 0.15s;
+        }
+
+        @keyframes dash-travel-x {
+          0%, 14% { transform: translate3d(0, 0, 0); opacity: 0; }
+          20% { opacity: 0.86; }
+          84% { opacity: 0.86; }
+          100% { transform: translate3d(calc(100vw + var(--pulse-len)), 0, 0); opacity: 0; }
+        }
+
+        @keyframes dash-travel-y {
+          0%, 12% { transform: translate3d(0, 0, 0); opacity: 0; }
+          18% { opacity: 0.86; }
+          84% { opacity: 0.86; }
+          100% { transform: translate3d(0, calc(100vh + var(--pulse-len)), 0); opacity: 0; }
+        }
+
+        @keyframes dash-travel-x-2 {
+          0%, 18% { transform: translate3d(0, 0, 0); opacity: 0; }
+          25% { opacity: 0.78; }
+          80% { opacity: 0.78; }
+          100% { transform: translate3d(calc(100vw + 160px), 0, 0); opacity: 0; }
+        }
+
+        @keyframes dash-travel-y-2 {
+          0%, 16% { transform: translate3d(0, 0, 0); opacity: 0; }
+          24% { opacity: 0.78; }
+          80% { opacity: 0.78; }
+          100% { transform: translate3d(0, calc(100vh + 160px), 0); opacity: 0; }
+        }
+
+        @keyframes dash-flicker {
+          0%, 100% { filter: blur(7px); }
+          48% { filter: blur(9px); }
+          74% { filter: blur(8px); }
+        }
+      `}</style>
+
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.2) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            backgroundPosition: "0 0",
+          }}
+        />
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(59,130,246,0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            filter: "blur(0.45px)",
+            boxShadow: "inset 0 0 90px rgba(2,6,23,0.88)",
+          }}
+        />
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.86) 70%, rgba(2,6,23,1) 100%)",
+          }}
+        />
+        <div className="dashboard-grid-light">
+          <span className="dash-line-x" />
+          <span className="dash-line-y" />
+        </div>
+      </div>
+
       <div className="absolute top-[-120px] right-[-80px] w-[420px] h-[420px] bg-[#1E3A8A]/30 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-[-160px] left-[-40px] w-[480px] h-[480px] bg-[#3B82F6]/25 rounded-full blur-[140px] -z-10" />
 

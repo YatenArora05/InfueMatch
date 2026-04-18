@@ -14,7 +14,7 @@ export default function BrandLayout({ children }: { children: React.ReactNode })
       <BrandSidebar isMobileOpen={isMobileMenuOpen} onMobileClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col md:ml-64 relative z-10">
+      <div className="relative z-10 flex flex-1 flex-col md:ml-68">
         {/* Mobile Menu Button */}
         <div className="md:hidden fixed top-4 right-4 z-40">
           <button
