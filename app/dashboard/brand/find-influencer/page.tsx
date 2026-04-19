@@ -5,6 +5,7 @@ import { Search, SlidersHorizontal, ChevronDown, X } from "lucide-react";
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import axios from "axios";
 import InfluencerCard from "@/components/brand/InfluencerCard";
+import { BRAND_SAVED_INFLUENCERS_EVENT } from "@/lib/brandSavedEvents";
 
 interface Influencer {
   id: string;
@@ -61,6 +62,31 @@ export default function FindInfluencer() {
   const [sortBy, setSortBy] = useState<SortKey>("best");
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("");
   const [showFilters, setShowFilters] = useState(false);
+  const [savedIds, setSavedIds] = useState<string[]>([]);
+
+  const refreshSavedIds = useCallback(async () => {
+    const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+    if (!userId) {
+      setSavedIds([]);
+      return;
+    }
+    try {
+      const res = await axios.get(`/api/brand/saved-influencers?userId=${userId}`);
+      setSavedIds(res.data?.savedIds || []);
+    } catch {
+      setSavedIds([]);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshSavedIds();
+  }, [refreshSavedIds]);
+
+  useEffect(() => {
+    const onSaved = () => refreshSavedIds();
+    window.addEventListener(BRAND_SAVED_INFLUENCERS_EVENT, onSaved);
+    return () => window.removeEventListener(BRAND_SAVED_INFLUENCERS_EVENT, onSaved);
+  }, [refreshSavedIds]);
 
   useEffect(() => {
     const fetchInfluencers = async () => {
@@ -414,6 +440,7 @@ export default function FindInfluencer() {
               followers={influencer.followers}
               rate={influencer.rate}
               profilePic={influencer.profilePic}
+              initialSaved={savedIds.includes(influencer.id)}
             />
           ))}
         </div>

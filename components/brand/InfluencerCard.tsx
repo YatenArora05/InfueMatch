@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Bookmark, Clock, Globe } from "lucide-react";
 import { getAvatarBackgroundColorFromName } from "@/lib/utils";
+import { dispatchBrandSavedInfluencersChanged } from "@/lib/brandSavedEvents";
+import axios from "axios";
 import InfluencerProfileModal from "./InfluencerProfileModal";
 
 interface InfluencerCardProps {
@@ -20,6 +22,8 @@ interface InfluencerCardProps {
   showHiddenGem?: boolean;
   shortlistMatch?: "Low" | "Medium" | "High";
   viewedToday?: number;
+  /** When provided, bookmark reflects saved state (e.g. from parent batch fetch). */
+  initialSaved?: boolean;
 }
 
 function formatNumberish(value: string): string {
@@ -41,10 +45,16 @@ export default function InfluencerCard({
   postedAt = "4d ago",
   tags,
   showHiddenGem = false,
-  shortlistMatch = "Medium",
-  viewedToday = 13,
+  initialSaved = false,
 }: InfluencerCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaved, setIsSaved] = useState(initialSaved);
+  const [saveBusy, setSaveBusy] = useState(false);
+
+  useEffect(() => {
+    setIsSaved(initialSaved);
+  }, [initialSaved, id]);
+
   const initial = (name || "U").trim().charAt(0).toUpperCase();
 
   const accentColor = color || getAvatarBackgroundColorFromName(name);
@@ -56,15 +66,42 @@ export default function InfluencerCard({
 
   const nicheLine = niche?.trim() || "No niche specified";
 
+  const toggleSave = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+    if (!userId || saveBusy) return;
+    const next = !isSaved;
+    setSaveBusy(true);
+    try {
+      await axios.post("/api/brand/saved-influencers", {
+        userId,
+        influencerId: id,
+        save: next,
+      });
+      setIsSaved(next);
+      dispatchBrandSavedInfluencersChanged();
+    } catch {
+      setIsSaved(!next);
+    } finally {
+      setSaveBusy(false);
+    }
+  };
+
   return (
     <>
       <div className="relative w-full min-w-0 rounded-2xl border border-[#2d2f3d] bg-[#1a1b26] p-6 shadow-sm transition-colors hover:border-[#3f4254]">
         <button
           type="button"
-          aria-label="Bookmark"
-          className="absolute right-5 top-5 rounded-lg p-1.5 text-[#9CA3AF] transition-colors hover:bg-white/5 hover:text-[#E5E7EB]"
+          aria-label={isSaved ? "Remove from saved" : "Save influencer"}
+          aria-pressed={isSaved}
+          disabled={saveBusy}
+          onClick={toggleSave}
+          className={`absolute right-5 top-5 rounded-lg p-1.5 transition-colors hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40 ${
+            isSaved ? "text-[#60A5FA]" : "text-[#9CA3AF] hover:text-[#E5E7EB]"
+          }`}
         >
-          <Bookmark className="h-5 w-5" strokeWidth={1.75} />
+          <Bookmark className="h-5 w-5" strokeWidth={1.75} fill={isSaved ? "currentColor" : "none"} />
         </button>
 
         <div className="flex gap-4 pr-10">
@@ -137,20 +174,6 @@ export default function InfluencerCard({
             </span>
           )}
         </div>
-
-        {/* <div className="mt-5 flex items-end justify-between gap-3 text-sm">
-          <p className="text-[#9CA3AF]">
-            Shortlist match:{" "}
-            <span className="font-semibold text-[#EAB308]">{shortlistMatch}</span>
-          </p>
-          <p className="flex shrink-0 items-center gap-1.5 text-[#9CA3AF]">
-            <span className="flex gap-0.5" aria-hidden>
-              <span className="h-1 w-1 rounded-full bg-[#6B7280]" />
-              <span className="h-1 w-1 rounded-full bg-[#6B7280]" />
-            </span>
-            <span>{viewedToday} viewed today</span>
-          </p>
-        </div> */}
 
         <button
           type="button"

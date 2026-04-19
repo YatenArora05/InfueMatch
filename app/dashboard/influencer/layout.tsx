@@ -1,25 +1,40 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import Sidebar from "@/components/dashboard/Sidebar";
 import ChatBot from "@/components/dashboard/ChatBot";
+import InfluencerProfileViewportGrid from "@/components/dashboard/InfluencerProfileViewportGrid";
 import { Menu } from "lucide-react";
+
+function isInfluencerProfilePath(pathname: string | null) {
+  if (!pathname) return false;
+  return (
+    pathname === "/dashboard/influencer/profile" ||
+    pathname.startsWith("/dashboard/influencer/profile/")
+  );
+}
 
 export default function InfluencerLayout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const showProfileGrid = isInfluencerProfilePath(pathname);
 
   return (
-    <div className="flex min-h-screen bg-[#020617]">
+    <div className="relative flex min-h-screen bg-[#060d24] text-[#E5E7EB]">
+      {showProfileGrid ? <InfluencerProfileViewportGrid /> : null}
+
       {/* Sidebar - Fixed width on desktop, mobile menu on mobile */}
       <Sidebar isMobileOpen={isMobileMenuOpen} onMobileClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col md:ml-64">
-        {/* Mobile Menu Button - fixed on mobile, black/blue theme */}
-        <div className="md:hidden fixed top-4 left-4 z-50">
+      <div className="relative z-10 flex flex-1 flex-col md:ml-68">
+        {/* Mobile Menu Button */}
+        <div className="fixed top-4 right-4 z-40 md:hidden">
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-3 bg-[#1F2937] rounded-xl shadow-lg border border-[#374151] text-[#E5E7EB] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-colors"
+            className="rounded-xl border border-[#1F2937] bg-[#0B1120] p-3 text-[#E5E7EB] shadow-lg shadow-blue-900/20 transition-colors hover:bg-[#3B82F6] hover:text-white"
             aria-label="Open menu"
           >
             <Menu size={24} />

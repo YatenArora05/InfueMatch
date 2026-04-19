@@ -83,42 +83,8 @@ export default function InfluencerProfilePage() {
 
   if (!isOnboarding && !isCompleted) {
     return (
-      <div className="relative min-h-[80vh] flex items-center justify-center px-4 overflow-hidden">
-        {/* Subtle blue grid background - slightly dulled for dashboard */}
-        <div className="pointer-events-none absolute inset-0 z-0">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(59,130,246,0.28) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(59,130,246,0.28) 1px, transparent 1px)
-              `,
-              backgroundSize: "50px 50px",
-              backgroundPosition: "0 0",
-            }}
-          />
-          <div
-            className="absolute inset-0 w-full h-full"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(59,130,246,0.10) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(59,130,246,0.10) 1px, transparent 1px)
-              `,
-              backgroundSize: "50px 50px",
-              filter: "blur(0.5px)",
-              boxShadow: "inset 0 0 90px rgba(15,23,42,0.85)",
-            }}
-          />
-          <div
-            className="absolute inset-0 w-full h-full"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.85) 70%, rgba(2,6,23,1) 100%)",
-            }}
-          />
-        </div>
-
-        <div className=" text-center w-full relative z-10">
+      <div className="relative flex min-h-[calc(100dvh-6rem)] items-center justify-center overflow-hidden px-4 md:min-h-[calc(100dvh-8rem)]">
+        <div className="relative z-10 w-full text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-4 md:mb-6 text-[#E5E7EB]">
             <span className="inline-flex items-baseline justify-center gap-2  whitespace-nowrap">
               <span className="text-inherit">Welcome,</span>

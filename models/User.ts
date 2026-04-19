@@ -62,6 +62,11 @@ const UserSchema = new Schema(
     // Fields used for password reset flow
     resetOtp: { type: String },
     resetOtpExpires: { type: Date },
+    /** Brand users: influencer User ids saved for later (shortlist). */
+    savedInfluencerIds: {
+      type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+      default: [],
+    },
   },
   { timestamps: true }
 );

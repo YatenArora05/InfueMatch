@@ -9,16 +9,17 @@ import {
   LogOut,
   LayoutDashboard,
   Search,
+  Bookmark,
   User,
   X,
   Settings,
-  MoreVertical,
 } from "lucide-react";
 import { getAvatarBackgroundColorFromName } from "@/lib/utils";
 
 const mainNav = [
   { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard/brand" },
   { name: "Find Influencer", icon: Search, href: "/dashboard/brand/find-influencer" },
+  { name: "Saved", icon: Bookmark, href: "/dashboard/brand/saved" },
 ] as const;
 
 const accountNav = [{ name: "Profile", icon: User, href: "/dashboard/brand/profile" }] as const;
@@ -122,13 +123,6 @@ export default function BrandSidebar({ isMobileOpen = false, onMobileClose }: Br
         <p className="truncate text-sm font-semibold text-white">{userName}</p>
         {/* <p className="text-xs text-[#9CA3AF]">Free plan</p> */}
       </div>
-      {/* <button
-        type="button"
-        className="shrink-0 rounded-lg p-1.5 text-[#9CA3AF] transition-colors hover:bg-white/5 hover:text-[#E5E7EB]"
-        aria-label="Account menu"
-      >
-        <MoreVertical size={18} strokeWidth={1.75} />
-      </button> */}
     </div>
   );
 
@@ -229,6 +223,7 @@ export default function BrandSidebar({ isMobileOpen = false, onMobileClose }: Br
           <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-4">
             <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B7280]">Main</p>
             {mainNav.map((item) => renderNavLink(item, navIsActive(pathname, item.href)))}
+
             <p className="mt-5 px-3 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B7280]">
               Account
             </p>
