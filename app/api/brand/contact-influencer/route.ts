@@ -69,10 +69,18 @@ export async function POST(req: Request) {
       { message: "Collaboration email sent successfully" },
       { status: 200 }
     );
-  } catch (error) {
-    console.error("Error sending collaboration email:", error);
+  } catch (error: unknown) {
+    const err = error as { message?: string; code?: string; response?: string };
+    console.error("Error sending collaboration email:", {
+      message: err?.message,
+      code: err?.code,
+      smtpResponse: err?.response,
+    });
     return NextResponse.json(
-      { message: "An error occurred while sending the email" },
+      {
+        message: "An error occurred while sending the email",
+        detail: err?.message || "Unknown error",
+      },
       { status: 500 }
     );
   }
