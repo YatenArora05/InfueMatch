@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local model cache (downloaded by @xenova/transformers, re-generated via npm run ingest)
+.cache/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
